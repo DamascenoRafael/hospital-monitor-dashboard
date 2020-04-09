@@ -1,0 +1,37 @@
+.card-container {
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+  width: 220px;
+  height: 300px;
+  margin: 24px;
+}
+
+.card-container .alert-bar {
+  height: 50px;
+  background: #e02041;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-container .alert-bar strong {
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.card-container .content {
+  width: 100%;
+  height: 250px;
+  padding: 14px 32px;
+}
+
+.card-container .content .sensor-info {
+  display: flex;
+  font-size: 18px;
+  align-items: center;
+  justify-content: space-between;
+  margin: 18px auto;
+}

@@ -1,0 +1,11 @@
+.monitor-container {
+  width: 100%;
+  padding: 32px;
+}
+
+.monitor-container .beds-container {
+  width: 100%;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
