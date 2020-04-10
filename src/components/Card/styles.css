@@ -8,6 +8,11 @@
   margin: 20px;
   box-shadow: 0 0 20px rgba(30, 30, 30, 0.2);
   cursor: pointer;
+  transition: box-shadow 0.3s;
+}
+
+.card-container:hover {
+  box-shadow: 0 0 20px rgba(30, 30, 30, 0.5);
 }
 
 .card-container .alert-bar {
