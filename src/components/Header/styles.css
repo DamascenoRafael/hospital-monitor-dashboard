@@ -5,6 +5,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 0 0 5px rgba(30, 30, 30, 0.2);
 }
 
 .header-container button {

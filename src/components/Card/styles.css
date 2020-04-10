@@ -3,9 +3,11 @@
   border-radius: 8px;
   overflow: hidden;
   position: relative;
-  width: 220px;
-  height: 300px;
-  margin: 24px;
+  width: 250px;
+  height: 350px;
+  margin: 20px;
+  box-shadow: 0 0 20px rgba(30, 30, 30, 0.2);
+  cursor: pointer;
 }
 
 .card-container .alert-bar {
@@ -24,8 +26,14 @@
 
 .card-container .content {
   width: 100%;
-  height: 250px;
+  height: 300px;
   padding: 14px 32px;
+}
+
+.card-container .content h1 {
+  text-align: center;
+  margin-top: 8px;
+  margin-bottom: 28px;
 }
 
 .card-container .content .sensor-info {
