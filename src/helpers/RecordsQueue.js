@@ -1,7 +1,8 @@
 class RecordsQueue {
-  constructor(maxSize) {
+  constructor(maxSize, key, queue = []) {
     this.maxSize = maxSize;
-    this.queue = [];
+    this.key = key;
+    this.queue = queue;
   }
 
   add(value) {
@@ -15,15 +16,15 @@ class RecordsQueue {
     return this.queue[this.queue.length - 1];
   }
 
-  loadLocal(key) {
-    const localQueue = localStorage.getItem(key);
+  loadLocal() {
+    const localQueue = JSON.parse(localStorage.getItem(this.key)) || this.queue;
     this.queue = localQueue.slice(
       Math.max(localQueue.length - this.maxSize, 0)
     );
   }
 
-  saveLocal(key) {
-    localStorage.setItem(key, this.queue);
+  saveLocal() {
+    localStorage.setItem(this.key, JSON.stringify(this.queue));
   }
 }
 

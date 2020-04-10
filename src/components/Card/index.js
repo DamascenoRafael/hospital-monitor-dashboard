@@ -14,15 +14,19 @@ import settings from '../../settings';
 import './styles.css';
 
 const Card = ({ name, route }) => {
-  const recordsQueue = new RecordsQueue(5).loadLocal(`sensor-${route}`);
-  const [cardRecords, setCardRecords] = useState(recordsQueue.queue);
 
-  const [sensors, setSensors] = useState({
+  const record = {
     beat: '--',
     spo2: '--',
     temp: '--',
     timestamp: Date.now(),
-  });
+  }
+
+  const recordsQueue = new RecordsQueue(5, `sensor-${route}`, [record]);
+  recordsQueue.loadLocal();
+
+  const [sensors, setSensors] = useState(recordsQueue.getLast());
+
 
   useEffect(() => {
     // TODO: close connection on unmountComponent
@@ -38,8 +42,12 @@ const Card = ({ name, route }) => {
       const { beat, spo2, temp } = JSON.parse(message.toString());
       const timestamp = Date.now();
       setSensors({ beat, spo2, temp, timestamp });
+      recordsQueue.add({ beat, spo2, temp, timestamp });
+      recordsQueue.saveLocal();
     });
+
   }, [route]);
+
 
   const timeFormatter = buildFormatter(brazilianStrings);
 
