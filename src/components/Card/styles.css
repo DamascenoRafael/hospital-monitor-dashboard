@@ -1,14 +1,40 @@
-.card-container {
-  background: #fff;
-  border-radius: 8px;
-  overflow: hidden;
-  position: relative;
+.card-container-holder {
   width: 250px;
   height: 350px;
   margin: 20px;
-  box-shadow: 0 0 20px rgba(30, 30, 30, 0.2);
+  perspective: 1100px;
+}
+
+.card-container {
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
   cursor: pointer;
-  transition: box-shadow 0.3s;
+  position: relative;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(30, 30, 30, 0.2);
+  transition: box-shadow 0.3s, transform 1s;
+}
+
+.card-container.is-flipped {
+  transform: rotateY(180deg);
+}
+
+.card-face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border-radius: 8px;
+}
+
+.card-face {
+  background: #fff;
+}
+
+.back-card-container {
+  transform: rotateY(180deg);
 }
 
 .card-container:hover {
@@ -20,6 +46,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: 8px 8px 0 0;
 }
 
 .card-container .alert-bar.danger {
@@ -50,13 +77,10 @@
   margin-bottom: 28px;
 }
 
-.card-container .content .time-ago {
-  position: absolute;
-  bottom: 14px;
+.card-container .card-face .time-ago {
   width: 100%;
-  margin: 0 auto;
+  margin-top: -28px;
   text-align: center;
-  left: 0px;
 }
 
 .card-container .content .sensor-info {
