@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import mqtt from 'mqtt';
+import TimeAgo from 'react-timeago';
+import brazilianStrings from 'react-timeago/lib/language-strings/pt-br';
+import buildFormatter from 'react-timeago/lib/formatters/buildFormatter';
 
 import { FaHeartbeat } from 'react-icons/fa';
 import { GiLungs } from 'react-icons/gi';
@@ -34,6 +37,8 @@ const Card = ({ name, route }) => {
     });
   }, [route]);
 
+  const timeFormatter = buildFormatter(brazilianStrings);
+
   return (
     <div className="card-container">
       <div className="alert-bar">
@@ -53,6 +58,13 @@ const Card = ({ name, route }) => {
           <GiLungs size={32} />
           <p>{sensors.spo2} %</p>
         </div>
+        <span className="time-ago">
+          <TimeAgo
+            live={true}
+            date={sensors.timestamp}
+            formatter={timeFormatter}
+          />
+        </span>
       </div>
     </div>
   );

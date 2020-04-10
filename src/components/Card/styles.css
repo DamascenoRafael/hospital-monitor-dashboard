@@ -36,6 +36,15 @@
   margin-bottom: 28px;
 }
 
+.card-container .content .time-ago {
+  position: absolute;
+  bottom: 14px;
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  left: 0px;
+}
+
 .card-container .content .sensor-info {
   display: flex;
   font-size: 18px;
