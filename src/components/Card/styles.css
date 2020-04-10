@@ -12,16 +12,25 @@
 
 .card-container .alert-bar {
   height: 50px;
-  background: #e02041;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.card-container .alert-bar strong {
-  font-size: 18px;
-  font-weight: 700;
-  color: #fff;
+.card-container .alert-bar.danger {
+  background: #e02041;
+}
+
+.card-container .alert-bar.warning {
+  background: #ffda21;
+}
+
+.card-container .alert-bar.normal {
+  background: #2076e0;
+}
+
+.card-container .alert-bar.disabled {
+  background: #cccccc;
 }
 
 .card-container .content {

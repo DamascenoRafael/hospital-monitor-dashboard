@@ -1,9 +1,9 @@
 import React from 'react';
 
-import './styles.css';
-
 import Card from '../../components/Card';
 import settings from '../../settings';
+
+import './styles.css';
 
 const Monitor = () => {
   return (

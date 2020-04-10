@@ -41,9 +41,7 @@ const Card = ({ name, route }) => {
 
   return (
     <div className="card-container">
-      <div className="alert-bar">
-        <strong>Hello Alert</strong>
-      </div>
+      <div className="alert-bar normal" />
       <div className="content">
         <h1>{name}</h1>
         <div className="sensor-info">
