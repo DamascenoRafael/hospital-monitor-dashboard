@@ -8,11 +8,15 @@ import { FaHeartbeat } from 'react-icons/fa';
 import { GiLungs } from 'react-icons/gi';
 import { WiThermometer } from 'react-icons/wi';
 
+import RecordsQueue from '../../helpers/RecordsQueue';
 import settings from '../../settings';
 
 import './styles.css';
 
 const Card = ({ name, route }) => {
+  const recordsQueue = new RecordsQueue(5).loadLocal(`sensor-${route}`);
+  const [cardRecords, setCardRecords] = useState(recordsQueue.queue);
+
   const [sensors, setSensors] = useState({
     beat: '--',
     spo2: '--',
