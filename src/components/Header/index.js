@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { AiOutlineHome, AiOutlineMenuUnfold, AiOutlineMenuFold } from 'react-icons/ai';
 
@@ -8,6 +8,14 @@ import './styles.css';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [clock, setClock] = useState('');
+
+  useEffect(() => {
+    const intervalId = setInterval(() => setClock(new Date().toLocaleTimeString()), 1000);
+    return () => {
+      clearInterval(intervalId);
+    };
+  });
 
   const handleMenuFold = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -27,6 +35,9 @@ const Header = () => {
         <Link className="button-link" to="/">
           <AiOutlineHome size={32} />
         </Link>
+      </div>
+      <div className="clock-container">
+        <h2>{clock}</h2>
       </div>
     </header>
   );

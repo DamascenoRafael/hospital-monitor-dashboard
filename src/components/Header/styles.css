@@ -11,9 +11,15 @@
 .header-container .left-button-container {
   position: absolute;
   left: 24px;
-  top: 14px;
+  align-self: center;
   width: 100px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+}
+
+.header-container .clock-container {
+  position: absolute;
+  right: 24px;
+  align-self: center;
 }
