@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import mqtt from 'mqtt';
 import TimeAgo from 'react-timeago';
 import brazilianStrings from 'react-timeago/lib/language-strings/pt-br';
@@ -12,6 +13,8 @@ import settings from '../../settings';
 import './styles.css';
 
 const Card = ({ name, route }) => {
+  const history = useHistory();
+
   const emptyRecord = {
     beat: '--',
     spo2: '--',
@@ -44,40 +47,28 @@ const Card = ({ name, route }) => {
     });
   }, [route]);
 
-  const handleFlipCard = () => {
-    setIsCardFlipped(!isCardFlipped);
+  const handleCardClick = () => {
+    // setIsCardFlipped(!isCardFlipped);
+    history.push(`/beds/${route}`);
   };
 
   const timeFormatter = buildFormatter(brazilianStrings);
 
   return (
     <div className="card-container-holder">
-      <div
-        onClick={handleFlipCard}
-        className={
-          isCardFlipped ? 'card-container is-flipped' : 'card-container'
-        }
-      >
+      <div onClick={handleCardClick} className={isCardFlipped ? 'card-container is-flipped' : 'card-container'}>
         <div className="card-face front-card-container">
           <div className="alert-bar normal" />
           <FrontCard name={name} sensors={sensors} />
           <div className="time-ago">
-            <TimeAgo
-              live={true}
-              date={sensors.timestamp}
-              formatter={timeFormatter}
-            />
+            <TimeAgo live={true} date={sensors.timestamp} formatter={timeFormatter} />
           </div>
         </div>
         <div className="card-face back-card-container">
           <div className="alert-bar normal" />
           <BackCard name={name} queueSensors={recordsQueue.queue} />
           <div className="time-ago">
-            <TimeAgo
-              live={true}
-              date={sensors.timestamp}
-              formatter={timeFormatter}
-            />
+            <TimeAgo live={true} date={sensors.timestamp} formatter={timeFormatter} />
           </div>
         </div>
       </div>
