@@ -27,9 +27,6 @@
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   border-radius: 8px;
-}
-
-.card-face {
   background: #fff;
 }
 

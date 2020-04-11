@@ -1,0 +1,46 @@
+.hospital-bed-container {
+  width: 100%;
+  padding: 32px;
+}
+
+.hospital-bed-container .info-chart-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.hospital-bed-container .info-chart-container .card-container {
+  margin: 20px;
+  margin-bottom: -8px;
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 0 0 20px rgba(30, 30, 30, 0.2);
+  transition: box-shadow 0.3s;
+  padding: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hospital-bed-container .info-chart-container .card-container:hover {
+  box-shadow: 0 0 20px rgba(30, 30, 30, 0.5);
+}
+
+.hospital-bed-container .info-chart-container .card-info-container {
+  width: 250px;
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.hospital-bed-container .info-chart-container .card-info-container h2 {
+  font-size: 26px;
+}
+
+.hospital-bed-container .info-chart-container .card-chart-container {
+  width: 60%;
+  height: 250px;
+}
