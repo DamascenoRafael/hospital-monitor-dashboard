@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import mqtt from 'mqtt';
-import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
+import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
+import TimeAgo from 'react-timeago';
+import brazilianStrings from 'react-timeago/lib/language-strings/pt-br';
+import buildFormatter from 'react-timeago/lib/formatters/buildFormatter';
 
 import { FaHeartbeat } from 'react-icons/fa';
 import { GiLungs } from 'react-icons/gi';
@@ -73,109 +76,119 @@ const HospitalBed = () => {
     return time;
   }
 
+  const timeFormatter = buildFormatter(brazilianStrings);
+
   return (
-    <div className="hospital-bed-container">
-      <div className="info-chart-container">
-        <div className="card-container card-info-container">
-          <h2>Freq. Cardíaca</h2>
-          <FaHeartbeat size={64} />
-          <h2>{sensors.beat} bpm</h2>
-        </div>
-        <div className="card-container card-chart-container">
-          <ResponsiveContainer width="100%" height="80%">
-            <LineChart data={recordsQueue.queue} syncId="anyId" margin={{ top: 8, right: 25, left: 0, bottom: 8 }}>
-              <CartesianGrid strokeDasharray="1 1" />
-              <XAxis hide dataKey="timestamp" interval={0} tickFormatter={(timeStr) => timeConverter(timeStr)} />
-              <YAxis
-                type="number"
-                interval={0}
-                domain={[(dataMin) => Math.floor(dataMin / 5) * 5, (dataMax) => Math.floor(dataMax / 5) * 5]}
-                axisLine={false}
-                unit=" bpm"
-                ticks={ticks_beat}
-              />
-              <Tooltip labelFormatter={(timeStr) => timeConverter(timeStr)} />
-              <Line
-                name="Freq. Cardíaca"
-                type="monotone"
-                dataKey="beat"
-                stroke="#2fc432"
-                fill="#2fc432"
-                dot={false}
-                isAnimationActive={false}
-                unit=" bpm"
-              />
-            </LineChart>
-          </ResponsiveContainer>
+    <div>
+      <div className="sub-header-container">
+        <p>{name}</p>
+        <div className="time-ago">
+          Atualizado <TimeAgo live={true} date={sensors.timestamp} formatter={timeFormatter} />
         </div>
       </div>
-      <div className="info-chart-container">
-        <div className="card-container card-info-container">
-          <h2>SpO2</h2>
-          <GiLungs size={64} />
-          <h2>{sensors.spo2} %</h2>
+      <div className="hospital-bed-container">
+        <div className="info-chart-container">
+          <div className="card-container card-info-container">
+            <h2>Freq. Cardíaca</h2>
+            <FaHeartbeat size={64} />
+            <h2>{sensors.beat} bpm</h2>
+          </div>
+          <div className="card-container card-chart-container">
+            <ResponsiveContainer width="100%" height="80%">
+              <LineChart data={recordsQueue.queue} syncId="anyId" margin={{ top: 8, right: 25, left: 0, bottom: 8 }}>
+                <CartesianGrid strokeDasharray="1 1" />
+                <XAxis hide dataKey="timestamp" interval={0} tickFormatter={(timeStr) => timeConverter(timeStr)} />
+                <YAxis
+                  type="number"
+                  interval={0}
+                  domain={[(dataMin) => Math.floor(dataMin / 5) * 5, (dataMax) => Math.floor(dataMax / 5) * 5]}
+                  axisLine={false}
+                  unit=" bpm"
+                  ticks={ticks_beat}
+                />
+                <Tooltip labelFormatter={(timeStr) => timeConverter(timeStr)} />
+                <Line
+                  name="Freq. Cardíaca"
+                  type="monotone"
+                  dataKey="beat"
+                  stroke="#2fc432"
+                  fill="#2fc432"
+                  dot={false}
+                  isAnimationActive={false}
+                  unit=" bpm"
+                />
+              </LineChart>
+            </ResponsiveContainer>
+          </div>
         </div>
-        <div className="card-container card-chart-container">
-          <ResponsiveContainer width="100%" height="80%">
-            <LineChart data={recordsQueue.queue} syncId="anyId" margin={{ top: 8, right: 25, left: 0, bottom: 8 }}>
-              <CartesianGrid strokeDasharray="1 1" />
-              <XAxis hide dataKey="timestamp" interval={0} tickFormatter={(timeStr) => timeConverter(timeStr)} />
-              <YAxis
-                type="number"
-                interval={0}
-                domain={[(dataMin) => dataMin, (dataMax) => dataMax]}
-                axisLine={false}
-                unit=" %"
-                ticks={ticks_spo2}
-              />
-              <Tooltip labelFormatter={(timeStr) => timeConverter(timeStr)} />
-              <Line
-                name="SpO2"
-                type="monotone"
-                dataKey="spo2"
-                stroke="#2076e0"
-                fill="#2076e0"
-                dot={false}
-                isAnimationActive={false}
-                unit=" %"
-              />
-            </LineChart>
-          </ResponsiveContainer>
+        <div className="info-chart-container">
+          <div className="card-container card-info-container">
+            <h2>SpO2</h2>
+            <GiLungs size={64} />
+            <h2>{sensors.spo2} %</h2>
+          </div>
+          <div className="card-container card-chart-container">
+            <ResponsiveContainer width="100%" height="80%">
+              <LineChart data={recordsQueue.queue} syncId="anyId" margin={{ top: 8, right: 25, left: 0, bottom: 8 }}>
+                <CartesianGrid strokeDasharray="1 1" />
+                <XAxis hide dataKey="timestamp" interval={0} tickFormatter={(timeStr) => timeConverter(timeStr)} />
+                <YAxis
+                  type="number"
+                  interval={0}
+                  domain={[(dataMin) => dataMin, (dataMax) => dataMax]}
+                  axisLine={false}
+                  unit=" %"
+                  ticks={ticks_spo2}
+                />
+                <Tooltip labelFormatter={(timeStr) => timeConverter(timeStr)} />
+                <Line
+                  name="SpO2"
+                  type="monotone"
+                  dataKey="spo2"
+                  stroke="#2076e0"
+                  fill="#2076e0"
+                  dot={false}
+                  isAnimationActive={false}
+                  unit=" %"
+                />
+              </LineChart>
+            </ResponsiveContainer>
+          </div>
         </div>
-      </div>
-      <div className="info-chart-container">
-        <div className="card-container card-info-container">
-          <h2>Temperatura</h2>
-          <WiThermometer size={64} />
-          <h2>{sensors.temp} ºC</h2>
-        </div>
-        <div className="card-container card-chart-container">
-          <ResponsiveContainer width="100%" height="80%">
-            <LineChart data={recordsQueue.queue} syncId="anyId" margin={{ top: 8, right: 25, left: 0, bottom: 8 }}>
-              <CartesianGrid strokeDasharray="1 1" />
-              <XAxis hide dataKey="timestamp" interval={0} tickFormatter={(timeStr) => timeConverter(timeStr)} />
-              <YAxis
-                type="number"
-                interval={0}
-                domain={[(dataMin) => dataMin, (dataMax) => dataMax]}
-                axisLine={false}
-                unit=" ºC"
-                ticks={ticks_temp}
-                tickFormatter={(valueStr) => valueStr.toFixed(1)}
-              />
-              <Tooltip labelFormatter={(timeStr) => timeConverter(timeStr)} />
-              <Line
-                name="Temperatura"
-                type="monotone"
-                dataKey="temp"
-                stroke="#e02041"
-                fill="#e02041"
-                dot={false}
-                isAnimationActive={false}
-                unit=" ºC"
-              />
-            </LineChart>
-          </ResponsiveContainer>
+        <div className="info-chart-container">
+          <div className="card-container card-info-container">
+            <h2>Temperatura</h2>
+            <WiThermometer size={64} />
+            <h2>{sensors.temp} ºC</h2>
+          </div>
+          <div className="card-container card-chart-container">
+            <ResponsiveContainer width="100%" height="80%">
+              <LineChart data={recordsQueue.queue} syncId="anyId" margin={{ top: 8, right: 25, left: 0, bottom: 8 }}>
+                <CartesianGrid strokeDasharray="1 1" />
+                <XAxis hide dataKey="timestamp" interval={0} tickFormatter={(timeStr) => timeConverter(timeStr)} />
+                <YAxis
+                  type="number"
+                  interval={0}
+                  domain={[(dataMin) => dataMin, (dataMax) => dataMax]}
+                  axisLine={false}
+                  unit=" ºC"
+                  ticks={ticks_temp}
+                  tickFormatter={(valueStr) => valueStr.toFixed(1)}
+                />
+                <Tooltip labelFormatter={(timeStr) => timeConverter(timeStr)} />
+                <Line
+                  name="Temperatura"
+                  type="monotone"
+                  dataKey="temp"
+                  stroke="#e02041"
+                  fill="#e02041"
+                  dot={false}
+                  isAnimationActive={false}
+                  unit=" ºC"
+                />
+              </LineChart>
+            </ResponsiveContainer>
+          </div>
         </div>
       </div>
     </div>
