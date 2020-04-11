@@ -22,7 +22,7 @@ const Card = ({ name, route }) => {
     timestamp: Date.now(),
   };
 
-  const recordsQueue = new RecordsQueue(5, `sensor-${route}`, [emptyRecord]);
+  const recordsQueue = new RecordsQueue(100, `sensor-${route}`, [emptyRecord]);
   recordsQueue.loadLocal();
 
   const [sensors, setSensors] = useState(recordsQueue.getLast());

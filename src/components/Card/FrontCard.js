@@ -15,12 +15,12 @@ const FrontCard = ({ name, sensors }) => {
         <p>{sensors.beat} bpm</p>
       </div>
       <div className="sensor-info">
-        <WiThermometer size={32} />
-        <p>{sensors.temp} ºC</p>
-      </div>
-      <div className="sensor-info">
         <GiLungs size={32} />
         <p>{sensors.spo2} %</p>
+      </div>
+      <div className="sensor-info">
+        <WiThermometer size={32} />
+        <p>{sensors.temp} ºC</p>
       </div>
     </div>
   );
