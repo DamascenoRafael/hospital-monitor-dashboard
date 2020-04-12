@@ -3,13 +3,12 @@ import { useParams } from 'react-router-dom';
 import mqtt from 'mqtt';
 import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
 import TimeAgo from 'react-timeago';
-import brazilianStrings from 'react-timeago/lib/language-strings/pt-br';
-import buildFormatter from 'react-timeago/lib/formatters/buildFormatter';
 
 import { FaHeartbeat } from 'react-icons/fa';
 import { GiLungs } from 'react-icons/gi';
 import { WiThermometer } from 'react-icons/wi';
 
+import timeFormatter from '../../helpers/timeFormatter';
 import RecordsQueue from '../../helpers/RecordsQueue';
 import settings from '../../settings';
 
@@ -75,8 +74,6 @@ const HospitalBed = () => {
     var time = hour + ':' + min.substr(-2) + ':' + sec.substr(-2);
     return time;
   }
-
-  const timeFormatter = buildFormatter(brazilianStrings);
 
   return (
     <div>

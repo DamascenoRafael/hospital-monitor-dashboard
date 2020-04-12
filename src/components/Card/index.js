@@ -2,11 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import mqtt from 'mqtt';
 import TimeAgo from 'react-timeago';
-import brazilianStrings from 'react-timeago/lib/language-strings/pt-br';
-import buildFormatter from 'react-timeago/lib/formatters/buildFormatter';
 
 import FrontCard from './FrontCard';
 import BackCard from './BackCard';
+import timeFormatter from '../../helpers/timeFormatter';
 import RecordsQueue from '../../helpers/RecordsQueue';
 import settings from '../../settings';
 
@@ -51,8 +50,6 @@ const Card = ({ name, route }) => {
     // setIsCardFlipped(!isCardFlipped);
     history.push(`/beds/${route}`);
   };
-
-  const timeFormatter = buildFormatter(brazilianStrings);
 
   return (
     <div className="card-container-holder">
