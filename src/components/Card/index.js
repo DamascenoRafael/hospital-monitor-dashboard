@@ -63,7 +63,7 @@ const Card = ({ name, route }) => {
         </div>
         <div className="card-face back-card-container">
           <div className="alert-bar normal" />
-          <BackCard name={name} queueSensors={recordsQueue.queue} />
+          <BackCard name={name} />
           <div className="time-ago">
             <TimeAgo live={true} date={sensors.timestamp} formatter={timeFormatter} />
           </div>
