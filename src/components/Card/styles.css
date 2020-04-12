@@ -78,6 +78,10 @@
   margin-bottom: 28px;
 }
 
+.card-container .card-face h1 {
+  cursor: pointer;
+}
+
 .card-container .card-face .time-ago {
   width: 100%;
   text-align: center;

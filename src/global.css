@@ -13,6 +13,13 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+h1,
+h2,
+h3,
+.sub-header-container > p {
+  cursor: default;
+}
+
 input,
 button,
 textarea {
