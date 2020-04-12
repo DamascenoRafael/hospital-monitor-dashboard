@@ -21,6 +21,7 @@ textarea {
 
 button {
   cursor: pointer;
+  background: transparent;
 }
 
 form input {
