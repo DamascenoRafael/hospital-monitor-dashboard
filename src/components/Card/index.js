@@ -28,11 +28,7 @@ const Card = ({ name, sensorId, sensorData, records }) => {
 
   return (
     <div className="card-container-holder">
-      <div
-        onClick={handleCardClick}
-        className={isCardFlipped ? 'card-container is-flipped' : 'card-container'}
-        title="Visualizar gráficos de evolução"
-      >
+      <div onClick={handleCardClick} className={isCardFlipped ? 'card-container is-flipped' : 'card-container'}>
         <div className="card-face front-card-container">
           <div className="alert-bar normal" />
           <FrontCard name={name} sensors={sensorData} />
