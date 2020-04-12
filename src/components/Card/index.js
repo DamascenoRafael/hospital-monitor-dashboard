@@ -37,7 +37,12 @@ const Card = ({ name, sensorId, sensorData, records }) => {
           <div className="alert-bar normal" />
           <FrontCard name={name} sensors={sensorData} />
           <div className="time-ago">
-            <TimeAgo live={true} date={sensorData.timestamp} formatter={timeAgoFormatter} />
+            <TimeAgo
+              live={true}
+              date={sensorData.timestamp}
+              formatter={timeAgoFormatter}
+              title={timeFormatter(sensorData.timestamp)}
+            />
           </div>
           <button className="button" onClick={(event) => handleFlipCard(event)} type="button" title="Ver estatísticas">
             <IoIosReturnLeft size={28} />
