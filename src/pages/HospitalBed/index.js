@@ -8,6 +8,7 @@ import { GiLungs } from 'react-icons/gi';
 import { WiThermometer } from 'react-icons/wi';
 
 import TimeSerieLineChart from '../../components/TimeSerieLineChart';
+import timeFormatter from '../../helpers/timeFormatter';
 import timeAgoFormatter from '../../helpers/timeAgoFormatter';
 import settings from '../../settings';
 
@@ -23,7 +24,12 @@ const HospitalBed = ({ records, sensorData }) => {
         <p>{name}</p>
         <div className="time-ago">
           ID do Sensor: {id} - Atualizado{' '}
-          <TimeAgo live={true} date={sensorData.timestamp} formatter={timeAgoFormatter} />
+          <TimeAgo
+            live={true}
+            date={sensorData.timestamp}
+            formatter={timeAgoFormatter}
+            title={timeFormatter(sensorData.timestamp)}
+          />
         </div>
       </div>
       <div className="hospital-bed-container">
