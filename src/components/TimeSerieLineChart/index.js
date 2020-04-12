@@ -1,6 +1,8 @@
 import React from 'react';
 import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
 
+import defaultTimeFormatter from '../../helpers/timeFormatter';
+
 const TimeSerieLineChart = ({
   data,
   dataKeyX,
@@ -27,15 +29,6 @@ const TimeSerieLineChart = ({
       ticks.push(index);
     }
     return ticks;
-  };
-
-  const defaultTimeFormatter = (timestamp) => {
-    var a = new Date(timestamp);
-    var hour = a.getHours();
-    var min = '0' + a.getMinutes();
-    var sec = '0' + a.getSeconds();
-    var time = hour + ':' + min.substr(-2) + ':' + sec.substr(-2);
-    return time;
   };
 
   const timeLabelFormatter = (value) => {
