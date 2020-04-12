@@ -46,18 +46,21 @@ form textarea {
 
 .button {
   border: 0px;
-  transition: opacity 0.2s;
+  border-radius: 8px;
+  transition: background 0.2s;
 }
 
 .button:hover {
-  opacity: 0.8;
+  background: rgba(150, 150, 150, 0.2);
 }
 
 .button-link {
+  padding: 5px;
   color: #272727;
-  transition: opacity 0.2s;
+  border-radius: 8px;
+  transition: background 0.2s;
 }
 
 .button-link:hover {
-  opacity: 0.8;
+  background: rgba(100, 100, 100, 0.2);
 }
