@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { AiOutlineHome, AiOutlineMenuUnfold, AiOutlineMenuFold } from 'react-icons/ai';
+import { AiOutlineHome, AiOutlineBarChart, AiOutlineMenuUnfold, AiOutlineMenuFold } from 'react-icons/ai';
 
 import settings from '../../settings';
 
@@ -34,6 +34,9 @@ const Header = () => {
         </button>
         <Link className="button-link" to="/">
           <AiOutlineHome size={32} />
+        </Link>
+        <Link className="button-link" to="/charts">
+          <AiOutlineBarChart size={32} />
         </Link>
       </div>
       <div className="clock-container">
