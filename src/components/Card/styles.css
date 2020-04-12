@@ -85,12 +85,12 @@
   bottom: 12px;
 }
 
-.card-container .card-face button {
-  width: 40px;
+.card-container .card-face .button {
+  width: 50px;
   height: 40px;
   position: absolute;
   bottom: 0px;
-  right: 5px;
+  right: 0px;
 }
 
 .card-container .content .sensor-info {
