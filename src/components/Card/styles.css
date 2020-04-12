@@ -32,6 +32,7 @@
 
 .front-card-container {
   z-index: 1;
+  transform: rotateY(0deg)
 }
 
 .back-card-container {
