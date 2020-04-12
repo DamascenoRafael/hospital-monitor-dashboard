@@ -1,6 +1,7 @@
 const settings = {
   DASHBOARD_NAME: 'Dashboard UTI 1',
   BROKER_URL: 'ws://test.mosquitto.org:8081',
+  RECORDS_TO_SAVE: 100,
   HOSPITAL_BEDS: [
     { name: 'Leito 1', sensor_id: 1 },
     { name: 'Leito 2', sensor_id: 2 },

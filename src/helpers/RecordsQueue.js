@@ -5,6 +5,10 @@ class RecordsQueue {
     this.queue = queue;
   }
 
+  isEmpty() {
+    return this.queue.length === 0;
+  }
+
   add(value) {
     this.queue.push(value);
     if (this.queue.length > this.maxSize) {
@@ -17,10 +21,8 @@ class RecordsQueue {
   }
 
   loadLocal() {
-    const localQueue = JSON.parse(localStorage.getItem(this.key)) || this.queue;
-    this.queue = localQueue.slice(
-      Math.max(localQueue.length - this.maxSize, 0)
-    );
+    const localQueue = JSON.parse(localStorage.getItem(this.key)) || [];
+    this.queue = localQueue.slice(Math.max(localQueue.length - this.maxSize, 0));
   }
 
   saveLocal() {

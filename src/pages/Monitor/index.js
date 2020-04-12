@@ -10,11 +10,7 @@ const Monitor = () => {
     <div className="monitor-container">
       <div className="beds-container">
         {settings.HOSPITAL_BEDS.map((hospital_bed, id) => (
-          <Card
-            key={id}
-            name={hospital_bed.name}
-            route={hospital_bed.sensor_id}
-          />
+          <Card key={id} name={hospital_bed.name} sensorId={hospital_bed.sensor_id} />
         ))}
       </div>
     </div>

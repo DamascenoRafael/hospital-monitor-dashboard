@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useParams } from 'react-router-dom';
-import mqtt from 'mqtt';
+import { connect } from 'react-redux';
 import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
 import TimeAgo from 'react-timeago';
 
@@ -9,48 +9,16 @@ import { GiLungs } from 'react-icons/gi';
 import { WiThermometer } from 'react-icons/wi';
 
 import timeFormatter from '../../helpers/timeFormatter';
-import RecordsQueue from '../../helpers/RecordsQueue';
 import settings from '../../settings';
 
 import './styles.css';
 
-const HospitalBed = () => {
+const HospitalBed = ({ records, sensorData }) => {
   let { id } = useParams();
   const name = settings.HOSPITAL_BEDS.find((bed) => bed.sensor_id === parseInt(id)).name;
 
-  const emptyRecord = {
-    beat: '--',
-    spo2: '--',
-    temp: '--',
-    timestamp: Date.now(),
-  };
-
-  const recordsQueue = new RecordsQueue(100, `sensor-${id}`, [emptyRecord]);
-  recordsQueue.loadLocal();
-
-  const [sensors, setSensors] = useState(recordsQueue.getLast());
-
-  useEffect(() => {
-    // TODO: close connection on unmountComponent
-    const client = mqtt.connect(settings.BROKER_URL);
-    client.subscribe(`oximetroiot/${id}`, function (err) {
-      console.log(`hospital_bed subscribing to oximetroiot/${id}....`);
-      if (err) {
-        console.log('error');
-      }
-    });
-
-    client.on('message', function (topic, message) {
-      const { beat, spo2, temp } = JSON.parse(message.toString());
-      const timestamp = Date.now();
-      setSensors({ beat, spo2, temp, timestamp });
-      recordsQueue.add({ beat, spo2, temp, timestamp });
-      recordsQueue.saveLocal();
-    });
-  }, [id]);
-
   const calculateTicks = (sensor, step = 5, offset = 10) => {
-    const allData = recordsQueue.queue.map((record) => parseInt(record[sensor]));
+    const allData = records.map((record) => parseInt(record[sensor]));
     const dataMin = Math.min(...allData);
     const dataMax = Math.max(...allData);
     const start = Math.floor(dataMin / step) * step - offset;
@@ -80,7 +48,7 @@ const HospitalBed = () => {
       <div className="sub-header-container">
         <p>{name}</p>
         <div className="time-ago">
-          Atualizado <TimeAgo live={true} date={sensors.timestamp} formatter={timeFormatter} />
+          Atualizado <TimeAgo live={true} date={sensorData.timestamp} formatter={timeFormatter} />
         </div>
       </div>
       <div className="hospital-bed-container">
@@ -88,11 +56,11 @@ const HospitalBed = () => {
           <div className="card-container card-info-container">
             <h2>Freq. Cardíaca</h2>
             <FaHeartbeat size={64} />
-            <h2>{sensors.beat} bpm</h2>
+            <h2>{sensorData.beat} bpm</h2>
           </div>
           <div className="card-container card-chart-container">
             <ResponsiveContainer width="100%" height="80%">
-              <LineChart data={recordsQueue.queue} syncId="anyId" margin={{ top: 8, right: 25, left: 0, bottom: 8 }}>
+              <LineChart data={records} syncId="anyId" margin={{ top: 8, right: 25, left: 0, bottom: 8 }}>
                 <CartesianGrid strokeDasharray="1 1" />
                 <XAxis hide dataKey="timestamp" interval={0} tickFormatter={(timeStr) => timeConverter(timeStr)} />
                 <YAxis
@@ -122,11 +90,11 @@ const HospitalBed = () => {
           <div className="card-container card-info-container">
             <h2>SpO2</h2>
             <GiLungs size={64} />
-            <h2>{sensors.spo2} %</h2>
+            <h2>{sensorData.spo2} %</h2>
           </div>
           <div className="card-container card-chart-container">
             <ResponsiveContainer width="100%" height="80%">
-              <LineChart data={recordsQueue.queue} syncId="anyId" margin={{ top: 8, right: 25, left: 0, bottom: 8 }}>
+              <LineChart data={records} syncId="anyId" margin={{ top: 8, right: 25, left: 0, bottom: 8 }}>
                 <CartesianGrid strokeDasharray="1 1" />
                 <XAxis hide dataKey="timestamp" interval={0} tickFormatter={(timeStr) => timeConverter(timeStr)} />
                 <YAxis
@@ -156,11 +124,11 @@ const HospitalBed = () => {
           <div className="card-container card-info-container">
             <h2>Temperatura</h2>
             <WiThermometer size={64} />
-            <h2>{sensors.temp} ºC</h2>
+            <h2>{sensorData.temp} ºC</h2>
           </div>
           <div className="card-container card-chart-container">
             <ResponsiveContainer width="100%" height="80%">
-              <LineChart data={recordsQueue.queue} syncId="anyId" margin={{ top: 8, right: 25, left: 0, bottom: 8 }}>
+              <LineChart data={records} syncId="anyId" margin={{ top: 8, right: 25, left: 0, bottom: 8 }}>
                 <CartesianGrid strokeDasharray="1 1" />
                 <XAxis hide dataKey="timestamp" interval={0} tickFormatter={(timeStr) => timeConverter(timeStr)} />
                 <YAxis
@@ -192,4 +160,11 @@ const HospitalBed = () => {
   );
 };
 
-export default HospitalBed;
+const mapStateToProps = (state, ownProps) => {
+  let id = ownProps.match.params.id;
+  const records = state.sensors[id];
+  const sensorData = records[records.length - 1];
+  return { records, sensorData };
+};
+
+export default connect(mapStateToProps)(HospitalBed);
