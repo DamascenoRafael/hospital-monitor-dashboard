@@ -41,8 +41,8 @@ const HospitalBed = ({ records, sensorData }) => {
               fillColor="#2fc432"
               unit=" bpm"
               lineName="Freq. Cardíaca"
-              tickStep={1}
-              tickOffset={1}
+              tickStep={2}
+              tickOffset={2}
             />
           </div>
         </div>
@@ -61,8 +61,8 @@ const HospitalBed = ({ records, sensorData }) => {
               fillColor="#2076e0"
               unit=" %"
               lineName="SpO2"
-              tickStep={5}
-              tickOffset={5}
+              tickStep={1}
+              tickOffset={1}
             />
           </div>
         </div>
