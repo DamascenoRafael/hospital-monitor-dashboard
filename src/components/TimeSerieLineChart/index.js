@@ -17,7 +17,7 @@ const TimeSerieLineChart = ({
   tickOffset,
 }) => {
   const calculateTicks = (step = 5, offset = 10) => {
-    const allData = data.map((record) => parseInt(record[dataKeyY]));
+    const allData = data.map((record) => record[dataKeyY]);
     const dataMin = Math.min(...allData);
     const dataMax = Math.max(...allData);
     const start = Math.floor(dataMin / step) * step - offset;

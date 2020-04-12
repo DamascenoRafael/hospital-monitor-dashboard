@@ -11,7 +11,7 @@ import timeFormatter from '../../helpers/timeFormatter';
 
 import './styles.css';
 
-const Card = ({ name, sensorId, sensorData }) => {
+const Card = ({ name, sensorId, sensorData, records }) => {
   const [isCardFlipped, setIsCardFlipped] = useState(false);
   const history = useHistory();
 
@@ -39,7 +39,7 @@ const Card = ({ name, sensorId, sensorData }) => {
         </div>
         <div className="card-face back-card-container">
           <div className="alert-bar normal" />
-          <BackCard name={name} />
+          <BackCard name={name} records={records} />
           <div className="time-ago">
             <TimeAgo live={true} date={sensorData.timestamp} formatter={timeFormatter} />
           </div>
@@ -56,7 +56,7 @@ const mapStateToProps = (state, ownProps) => {
   const { sensorId } = ownProps;
   const records = state.sensors[sensorId];
   const sensorData = records[records.length - 1];
-  return { sensorData };
+  return { records, sensorData };
 };
 
 export default connect(mapStateToProps)(Card);
