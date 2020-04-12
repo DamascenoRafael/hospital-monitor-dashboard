@@ -30,6 +30,10 @@
   background: #fff;
 }
 
+.front-card-container {
+  z-index: 1;
+}
+
 .back-card-container {
   transform: rotateY(180deg);
 }
@@ -76,8 +80,17 @@
 
 .card-container .card-face .time-ago {
   width: 100%;
-  margin-top: -28px;
   text-align: center;
+  position: absolute;
+  bottom: 12px;
+}
+
+.card-container .card-face button {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
 }
 
 .card-container .content .sensor-info {

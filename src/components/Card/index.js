@@ -3,6 +3,8 @@ import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import TimeAgo from 'react-timeago';
 
+import { MdReply } from 'react-icons/md';
+
 import FrontCard from './FrontCard';
 import BackCard from './BackCard';
 import timeFormatter from '../../helpers/timeFormatter';
@@ -14,8 +16,12 @@ const Card = ({ name, sensorId, sensorData }) => {
   const history = useHistory();
 
   const handleCardClick = () => {
-    // setIsCardFlipped(!isCardFlipped);
     history.push(`/beds/${sensorId}`);
+  };
+
+  const handleFlipCard = (event) => {
+    event.stopPropagation();
+    setIsCardFlipped(!isCardFlipped);
   };
 
   return (
@@ -27,6 +33,9 @@ const Card = ({ name, sensorId, sensorData }) => {
           <div className="time-ago">
             <TimeAgo live={true} date={sensorData.timestamp} formatter={timeFormatter} />
           </div>
+          <button className="button" onClick={(event) => handleFlipCard(event)} type="button">
+            <MdReply size={28} />
+          </button>
         </div>
         <div className="card-face back-card-container">
           <div className="alert-bar normal" />
@@ -34,6 +43,9 @@ const Card = ({ name, sensorId, sensorData }) => {
           <div className="time-ago">
             <TimeAgo live={true} date={sensorData.timestamp} formatter={timeFormatter} />
           </div>
+          <button className="button" onClick={(event) => handleFlipCard(event)} type="button">
+            <MdReply size={28} />
+          </button>
         </div>
       </div>
     </div>
