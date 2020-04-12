@@ -8,6 +8,9 @@ import './styles.css';
 
 const BackCard = ({ name, records }) => {
   const calculateStatistics = (data) => {
+    if (data[0] === '--') {
+      return { maxData: '--', avgData: '--', minData: '--' };
+    }
     const maxData = Math.max(...data);
     const sumData = data.reduce((previous, current) => (current += previous));
     const avgData = (sumData / data.length).toFixed(1);
