@@ -22,7 +22,7 @@ const HospitalBed = ({ records, sensorData }) => {
       <div className="sub-header-container">
         <p>{name}</p>
         <div className="time-ago">
-          Atualizado <TimeAgo live={true} date={sensorData.timestamp} formatter={timeFormatter} />
+          ID do Sensor: {id} - Atualizado <TimeAgo live={true} date={sensorData.timestamp} formatter={timeFormatter} />
         </div>
       </div>
       <div className="hospital-bed-container">
