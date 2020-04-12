@@ -3,10 +3,12 @@ import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import TimeAgo from 'react-timeago';
 
-import { MdReply } from 'react-icons/md';
+import { IoIosReturnLeft } from 'react-icons/io';
 
 import FrontCard from './FrontCard';
 import BackCard from './BackCard';
+
+import timeAgoFormatter from '../../helpers/timeAgoFormatter';
 import timeFormatter from '../../helpers/timeFormatter';
 
 import './styles.css';
@@ -31,20 +33,21 @@ const Card = ({ name, sensorId, sensorData, records }) => {
           <div className="alert-bar normal" />
           <FrontCard name={name} sensors={sensorData} />
           <div className="time-ago">
-            <TimeAgo live={true} date={sensorData.timestamp} formatter={timeFormatter} />
+            <TimeAgo live={true} date={sensorData.timestamp} formatter={timeAgoFormatter} />
           </div>
           <button className="button" onClick={(event) => handleFlipCard(event)} type="button">
-            <MdReply size={28} />
+            <IoIosReturnLeft size={28} />
           </button>
         </div>
         <div className="card-face back-card-container">
           <div className="alert-bar normal" />
           <BackCard name={name} records={records} />
           <div className="time-ago">
-            <TimeAgo live={true} date={sensorData.timestamp} formatter={timeFormatter} />
+            <p>ID do Sensor: {sensorId}</p>
+            Entre {timeFormatter(records[0].timestamp)} - {timeFormatter(sensorData.timestamp)}
           </div>
           <button className="button" onClick={(event) => handleFlipCard(event)} type="button">
-            <MdReply size={28} />
+            <IoIosReturnLeft size={28} />
           </button>
         </div>
       </div>

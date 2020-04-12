@@ -90,7 +90,7 @@
   height: 40px;
   position: absolute;
   bottom: 0px;
-  right: 0px;
+  right: 5px;
 }
 
 .card-container .content .sensor-info {
@@ -99,4 +99,21 @@
   align-items: center;
   justify-content: space-between;
   margin: 18px auto;
+}
+
+.sensor-statistics-table{
+  position: absolute;
+  left: 50%;
+  margin-top: -10px;
+  transform: translateX(-50%);
+
+}
+
+.sensor-unit-col{
+  text-align: left;
+}
+
+.sensor-data-col{
+  text-align: center;
+  padding: 5px;
 }
