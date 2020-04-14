@@ -1,14 +1,12 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
-import TimeAgo from 'react-timeago';
 
 import { IoIosReturnLeft } from 'react-icons/io';
 
 import FrontCard from './FrontCard';
 import BackCard from './BackCard';
-
-import timeAgoFormatter from '../../helpers/timeAgoFormatter';
+import TimeAgoLabel from '../TimeAgoLabel';
 import timeFormatter from '../../helpers/timeFormatter';
 
 import './styles.css';
@@ -33,12 +31,7 @@ const Card = ({ name, sensorId, sensorData, records }) => {
           <div className="alert-bar normal" />
           <FrontCard name={name} sensorData={sensorData} />
           <div className="time-ago">
-            <TimeAgo
-              live={true}
-              date={sensorData.timestamp}
-              formatter={timeAgoFormatter}
-              title={timeFormatter(sensorData.timestamp)}
-            />
+            <TimeAgoLabel date={sensorData.timestamp} />
           </div>
           <button className="button" onClick={(event) => handleFlipCard(event)} type="button" title="Ver estatísticas">
             <IoIosReturnLeft size={28} />

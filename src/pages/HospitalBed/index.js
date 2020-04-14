@@ -1,15 +1,13 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
-import TimeAgo from 'react-timeago';
 
 import { FaHeartbeat } from 'react-icons/fa';
 import { GiLungs } from 'react-icons/gi';
 import { WiThermometer } from 'react-icons/wi';
 
 import TimeSerieLineChart from '../../components/TimeSerieLineChart';
-import timeFormatter from '../../helpers/timeFormatter';
-import timeAgoFormatter from '../../helpers/timeAgoFormatter';
+import TimeAgoLabel from '../../components/TimeAgoLabel';
 
 import './styles.css';
 
@@ -21,13 +19,7 @@ const HospitalBed = ({ name, records, sensorData }) => {
       <div className="sub-header-container">
         <p>{name}</p>
         <div className="time-ago">
-          ID do Sensor: {id} - Atualizado{' '}
-          <TimeAgo
-            live={true}
-            date={sensorData.timestamp}
-            formatter={timeAgoFormatter}
-            title={timeFormatter(sensorData.timestamp)}
-          />
+          ID do Sensor: {id} - <TimeAgoLabel date={sensorData.timestamp} short={false} />
         </div>
       </div>
       <div className="hospital-bed-container">

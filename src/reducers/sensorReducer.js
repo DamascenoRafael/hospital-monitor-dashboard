@@ -5,7 +5,7 @@ const emptySensorData = {
   beat: '--',
   spo2: '--',
   temp: '--',
-  timestamp: Date.now(),
+  timestamp: '--',
 };
 
 const loadInitialData = (hospitalBeds) => {
