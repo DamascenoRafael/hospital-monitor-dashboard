@@ -30,36 +30,36 @@ const BackCard = ({ name, records }) => {
         <tbody>
           <tr>
             <th className="sensor-data-col"></th>
-            <th className="sensor-data-col">Max</th>
-            <th className="sensor-data-col">Média</th>
             <th className="sensor-data-col">Min</th>
+            <th className="sensor-data-col">Média</th>
+            <th className="sensor-data-col">Max</th>
             <th></th>
           </tr>
           <tr>
             <td className="sensor-data-col">
               <FaHeartbeat size={32} />
             </td>
-            <td className="sensor-data-col">{statistics.beat.maxData}</td>
-            <td className="sensor-data-col">{statistics.beat.avgData}</td>
             <td className="sensor-data-col">{statistics.beat.minData}</td>
+            <td className="sensor-data-col">{statistics.beat.avgData}</td>
+            <td className="sensor-data-col">{statistics.beat.maxData}</td>
             <td className="sensor-unit-col">bpm</td>
           </tr>
           <tr>
             <td className="sensor-data-col">
               <GiLungs size={32} />
             </td>
-            <td className="sensor-data-col">{statistics.spo2.maxData}</td>
-            <td className="sensor-data-col">{statistics.spo2.avgData}</td>
             <td className="sensor-data-col">{statistics.spo2.minData}</td>
+            <td className="sensor-data-col">{statistics.spo2.avgData}</td>
+            <td className="sensor-data-col">{statistics.spo2.maxData}</td>
             <td className="sensor-unit-col">%</td>
           </tr>
           <tr>
             <td className="sensor-data-col">
               <WiThermometer size={32} />
             </td>
-            <td className="sensor-data-col">{statistics.temp.maxData}</td>
-            <td className="sensor-data-col">{statistics.temp.avgData}</td>
             <td className="sensor-data-col">{statistics.temp.minData}</td>
+            <td className="sensor-data-col">{statistics.temp.avgData}</td>
+            <td className="sensor-data-col">{statistics.temp.maxData}</td>
             <td className="sensor-unit-col">°C</td>
           </tr>
         </tbody>
