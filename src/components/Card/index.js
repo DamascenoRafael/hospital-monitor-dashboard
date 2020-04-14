@@ -31,7 +31,7 @@ const Card = ({ name, sensorId, sensorData, records }) => {
       <div onClick={handleCardClick} className={isCardFlipped ? 'card-container is-flipped' : 'card-container'}>
         <div className="card-face front-card-container">
           <div className="alert-bar normal" />
-          <FrontCard name={name} sensors={sensorData} />
+          <FrontCard name={name} sensorData={sensorData} />
           <div className="time-ago">
             <TimeAgo
               live={true}

@@ -6,21 +6,21 @@ import { WiThermometer } from 'react-icons/wi';
 
 import './styles.css';
 
-const FrontCard = ({ name, sensors }) => {
+const FrontCard = ({ name, sensorData }) => {
   return (
     <div className="content">
       <h1>{name}</h1>
       <div className="sensor-info">
         <FaHeartbeat size={32} />
-        <p>{sensors.beat} bpm</p>
+        <p>{sensorData.beat} bpm</p>
       </div>
       <div className="sensor-info">
         <GiLungs size={32} />
-        <p>{sensors.spo2} %</p>
+        <p>{sensorData.spo2} %</p>
       </div>
       <div className="sensor-info">
         <WiThermometer size={32} />
-        <p>{sensors.temp} ºC</p>
+        <p>{sensorData.temp} ºC</p>
       </div>
     </div>
   );
