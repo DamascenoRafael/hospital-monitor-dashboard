@@ -10,7 +10,7 @@ import { WiThermometer } from 'react-icons/wi';
 import TimeSerieLineChart from '../../components/TimeSerieLineChart';
 import timeFormatter from '../../helpers/timeFormatter';
 import timeAgoFormatter from '../../helpers/timeAgoFormatter';
-import settings from '../../settings';
+import settings from 'settings';
 
 import './styles.css';
 

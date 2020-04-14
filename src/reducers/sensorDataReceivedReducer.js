@@ -1,5 +1,5 @@
 import RecordsQueue from '../helpers/RecordsQueue';
-import settings from '../settings';
+import settings from 'settings';
 
 const emptySensorData = {
   beat: '--',

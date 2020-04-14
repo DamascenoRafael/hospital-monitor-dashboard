@@ -15,5 +15,3 @@ const settings = {
     { name: 'Leito 10', sensor_id: 10 },
   ],
 };
-
-export default settings;

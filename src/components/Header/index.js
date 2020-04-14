@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import { AiOutlineHome, AiOutlineBarChart } from 'react-icons/ai';
 
-import settings from '../../settings';
+import settings from 'settings';
 
 import './styles.css';
 

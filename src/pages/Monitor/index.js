@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Card from '../../components/Card';
-import settings from '../../settings';
+import settings from 'settings';
 
 import './styles.css';
 

@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import GenericBarChart from '../../components/GenericBarChart';
-import settings from '../../settings';
+import settings from 'settings';
 
 import './styles.css';
 

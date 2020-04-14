@@ -4,7 +4,7 @@ import mqtt from 'mqtt';
 
 import Routes from './routes';
 import { sensorDataReceived } from './actions';
-import settings from './settings';
+import settings from 'settings';
 
 import './global.css';
 
