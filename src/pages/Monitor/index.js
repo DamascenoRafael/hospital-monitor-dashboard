@@ -1,20 +1,25 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import Card from '../../components/Card';
-import settings from 'settings';
 
 import './styles.css';
 
-const Monitor = () => {
+const Monitor = ({ hospitalBeds }) => {
   return (
     <div className="monitor-container">
       <div className="beds-container">
-        {settings.HOSPITAL_BEDS.map((hospital_bed, id) => (
-          <Card key={id} name={hospital_bed.name} sensorId={hospital_bed.sensor_id} />
+        {hospitalBeds.map((hospitalBed, id) => (
+          <Card key={id} name={hospitalBed.name} sensorId={hospitalBed.sensorId} />
         ))}
       </div>
     </div>
   );
 };
 
-export default Monitor;
+const mapStateToProps = (state) => {
+  const hospitalBeds = state.hospitalBeds;
+  return { hospitalBeds };
+};
+
+export default connect(mapStateToProps)(Monitor);

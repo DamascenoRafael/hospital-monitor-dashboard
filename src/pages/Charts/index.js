@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import GenericBarChart from '../../components/GenericBarChart';
-import settings from 'settings';
 
 import './styles.css';
 
@@ -48,9 +47,9 @@ const Charts = ({ data }) => {
 
 const mapStateToProps = (state) => {
   let data = [];
-  settings.HOSPITAL_BEDS.forEach((hospital_bed) => {
-    const name = hospital_bed.name;
-    const records = state.sensors[hospital_bed.sensor_id];
+  state.hospitalBeds.forEach((hospitalBed) => {
+    const name = hospitalBed.name;
+    const records = state.sensors[hospitalBed.sensorId];
     const { beat, spo2, temp } = records[records.length - 1];
     data.push({ name, beat, spo2, temp });
   });

@@ -1,20 +1,26 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
+import { mapKeys, camelCase } from 'lodash';
 import mqtt from 'mqtt';
 
 import Routes from './routes';
-import { sensorDataReceived } from './actions';
+import { hospitalBedsUpdated, sensorDataReceived } from './actions';
 import settings from 'settings';
 
 import './global.css';
 
-const App = ({ sensorDataReceived }) => {
+const App = ({ hospitalBedsUpdated, sensorDataReceived }) => {
+  const hospitalBeds = settings.HOSPITAL_BEDS.map((hospitalBed) =>
+    mapKeys(hospitalBed, (_value, key) => camelCase(key))
+  );
+  hospitalBedsUpdated(hospitalBeds);
+
   useEffect(() => {
     const client = mqtt.connect(settings.BROKER_URL);
 
     client.on('connect', function () {
-      settings.HOSPITAL_BEDS.forEach((hospital_bed) => {
-        const sensorId = hospital_bed.sensor_id;
+      hospitalBeds.forEach((hospitalBed) => {
+        const sensorId = hospitalBed.sensorId;
         client.subscribe(`oximetroiot/${sensorId}`, function (err) {
           console.log(`subscribing to oximetroiot/${sensorId}....`);
           if (err) {
@@ -37,4 +43,4 @@ const App = ({ sensorDataReceived }) => {
   return <Routes />;
 };
 
-export default connect(null, { sensorDataReceived })(App);
+export default connect(null, { hospitalBedsUpdated, sensorDataReceived })(App);

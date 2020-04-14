@@ -10,13 +10,11 @@ import { WiThermometer } from 'react-icons/wi';
 import TimeSerieLineChart from '../../components/TimeSerieLineChart';
 import timeFormatter from '../../helpers/timeFormatter';
 import timeAgoFormatter from '../../helpers/timeAgoFormatter';
-import settings from 'settings';
 
 import './styles.css';
 
-const HospitalBed = ({ records, sensorData }) => {
+const HospitalBed = ({ name, records, sensorData }) => {
   let { id } = useParams();
-  const name = settings.HOSPITAL_BEDS.find((bed) => bed.sensor_id === parseInt(id)).name;
 
   return (
     <div>
@@ -103,7 +101,8 @@ const mapStateToProps = (state, ownProps) => {
   let id = ownProps.match.params.id;
   const records = state.sensors[id];
   const sensorData = records[records.length - 1];
-  return { records, sensorData };
+  const name = state.hospitalBeds.find((hospitalBed) => hospitalBed.sensorId === parseInt(id)).name;
+  return { name, records, sensorData };
 };
 
 export default connect(mapStateToProps)(HospitalBed);

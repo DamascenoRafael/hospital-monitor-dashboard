@@ -4,3 +4,10 @@ export const sensorDataReceived = (data) => {
     payload: data,
   };
 };
+
+export const hospitalBedsUpdated = (data) => {
+  return {
+    type: 'HOSPITAL_BEDS_UPDATED',
+    payload: data,
+  };
+};

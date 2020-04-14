@@ -8,10 +8,10 @@ const emptySensorData = {
   timestamp: Date.now(),
 };
 
-const initialState = () => {
+const loadInitialData = (hospitalBeds) => {
   const state = {};
-  settings.HOSPITAL_BEDS.forEach((hospital_bed) => {
-    const sensorId = hospital_bed.sensor_id;
+  hospitalBeds.forEach((hospitalBed) => {
+    const sensorId = hospitalBed.sensorId;
     const recordsQueue = new RecordsQueue(settings.RECORDS_TO_SAVE, `sensor-${sensorId}`);
     recordsQueue.loadLocal();
     if (recordsQueue.isEmpty()) {
@@ -22,7 +22,7 @@ const initialState = () => {
   return state;
 };
 
-export default (state = initialState(), action) => {
+export default (state = {}, action) => {
   switch (action.type) {
     case 'SENSOR_DATA_RECEIVED':
       const { sensorId, sensorData } = action.payload;
@@ -33,6 +33,8 @@ export default (state = initialState(), action) => {
       const newRecords = {};
       newRecords[sensorId] = recordsQueue.queue;
       return { ...state, ...newRecords };
+    case 'HOSPITAL_BEDS_UPDATED':
+      return loadInitialData(action.payload);
     default:
       return state;
   }
