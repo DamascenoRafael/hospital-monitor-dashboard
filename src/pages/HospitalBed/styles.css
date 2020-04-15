@@ -6,6 +6,10 @@
   align-items: center;
   justify-content: center;
   box-shadow: 0 5px 5px -5px rgba(30, 30, 30, 0.2);
+  position: sticky;
+  position: -webkit-sticky;
+  top: 60px; /* header height */
+  z-index: 100;
 }
 
 .sub-header-container p {
