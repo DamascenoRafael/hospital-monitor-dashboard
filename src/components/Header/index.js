@@ -14,7 +14,7 @@ const Header = ({ sensorCheckData }) => {
 
   useEffect(() => {
     const intervalId = setInterval(() => {
-      sensorCheckData(settings.EXPIRE_AFTER_TIME * 60 * 1000);
+      sensorCheckData(settings.MINUTES_TO_EXPIRE * 60 * 1000);
       setClock(new Date().toLocaleTimeString());
     }, 1000);
     return () => {

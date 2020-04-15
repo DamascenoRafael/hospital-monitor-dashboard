@@ -26,7 +26,7 @@ const TimeAgoLabel = ({ date, short = true, expired = false }) => {
         live={true}
         date={date}
         formatter={timeAgoFormatter}
-        title={'Ultima atualização: ' + timeFormatter(date)}
+        title={'Última atualização: ' + timeFormatter(date)}
         style={style}
       />
     </span>

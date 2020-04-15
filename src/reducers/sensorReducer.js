@@ -43,13 +43,12 @@ export default (state = {}, action) => {
       Object.keys(state).forEach((sensorId) => {
         const now = Date.now();
         const records = state[sensorId].data;
-        const lasTimestamp = records[records.length - 1].timestamp;
-        if (now - lasTimestamp >= expireAfterTime) {
+        const lastRecordTimestamp = records[records.length - 1].timestamp;
+        if (now - lastRecordTimestamp >= expireAfterTime) {
           hasExpired = 1;
           state[sensorId].expired = 1;
         }
       });
-
       return hasExpired ? { ...state } : state;
     }
     case 'HOSPITAL_BEDS_UPDATED': {

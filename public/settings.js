@@ -2,6 +2,7 @@ const settings = {
   DASHBOARD_NAME: 'Dashboard UTI 1',
   BROKER_URL: 'wss://test.mosquitto.org:8081',
   RECORDS_TO_SAVE: 500,
+  MINUTES_TO_EXPIRE: 1,
   HOSPITAL_BEDS: [
     { name: 'Leito 1', sensor_id: 1 },
     { name: 'Leito 2', sensor_id: 2 },
@@ -14,5 +15,4 @@ const settings = {
     { name: 'Leito 9', sensor_id: 9 },
     { name: 'Leito 10', sensor_id: 10 },
   ],
-  EXPIRE_AFTER_TIME: 1,
 };
