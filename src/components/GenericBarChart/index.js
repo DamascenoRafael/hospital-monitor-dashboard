@@ -20,7 +20,7 @@ const GenericBarChart = ({ data, dataKeyX, dataKeyY, syncId, fillColor, unit, ba
             position: 'center',
             fill: labelColor || 'white',
             fontSize: '18px',
-            fontWeight: '500',
+            fontWeight: 500,
           }}
           isAnimationActive={false}
         />
