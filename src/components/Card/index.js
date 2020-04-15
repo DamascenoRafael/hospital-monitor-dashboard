@@ -60,8 +60,9 @@ const Card = ({ name, sensorId, sensorData, records }) => {
 
 const mapStateToProps = (state, ownProps) => {
   const { sensorId } = ownProps;
-  const records = state.sensors[sensorId];
-  const sensorData = records[records.length - 1];
+  const records = state.sensors[sensorId].data;
+  const expired = state.sensors[sensorId].expired;
+  const sensorData = expired ? { beat: '--', spo2: '--', temp: '--', timestamp: '--' } : records[records.length - 1];
   return { records, sensorData };
 };
 

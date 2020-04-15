@@ -49,7 +49,7 @@ const mapStateToProps = (state) => {
   let data = [];
   state.hospitalBeds.forEach((hospitalBed) => {
     const name = hospitalBed.name;
-    const records = state.sensors[hospitalBed.sensorId];
+    const records = state.sensors[hospitalBed.sensorId].data;
     const { beat, spo2, temp } = records[records.length - 1];
     data.push({ name, beat, spo2, temp });
   });

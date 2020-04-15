@@ -91,7 +91,7 @@ const HospitalBed = ({ name, records, sensorData }) => {
 
 const mapStateToProps = (state, ownProps) => {
   let id = ownProps.match.params.id;
-  const records = state.sensors[id];
+  const records = state.sensors[id].data;
   const sensorData = records[records.length - 1];
   const name = state.hospitalBeds.find((hospitalBed) => hospitalBed.sensorId === parseInt(id)).name;
   return { name, records, sensorData };

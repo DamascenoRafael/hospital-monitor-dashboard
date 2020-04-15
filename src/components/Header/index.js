@@ -1,17 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import { AiOutlineHome, AiOutlineBarChart } from 'react-icons/ai';
+import { sensorCheckData } from '../../actions';
 
 import settings from 'settings';
 
 import './styles.css';
 
-const Header = () => {
+const Header = ({ sensorCheckData }) => {
   const [clock, setClock] = useState('');
 
   useEffect(() => {
-    const intervalId = setInterval(() => setClock(new Date().toLocaleTimeString()), 1000);
+    const intervalId = setInterval(() => {
+      sensorCheckData(settings.EXPIRE_AFTER_TIME * 60 * 1000);
+      setClock(new Date().toLocaleTimeString());
+    }, 1000);
     return () => {
       clearInterval(intervalId);
     };
@@ -37,4 +42,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default connect(null, { sensorCheckData })(Header);
