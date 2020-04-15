@@ -67,6 +67,10 @@
   background: #cccccc;
 }
 
+.card-container .alert-bar.expired {
+  background: #333333;
+}
+
 .card-container .content {
   width: 100%;
   height: 300px;

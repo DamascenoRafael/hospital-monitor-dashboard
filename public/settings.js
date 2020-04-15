@@ -13,7 +13,6 @@ const settings = {
     { name: 'Leito 8', sensor_id: 8 },
     { name: 'Leito 9', sensor_id: 9 },
     { name: 'Leito 10', sensor_id: 10 },
-    { name: 'Leito 11', sensor_id: 11 },
   ],
-  EXPIRE_AFTER_TIME: 0.1,
+  EXPIRE_AFTER_TIME: 1,
 };

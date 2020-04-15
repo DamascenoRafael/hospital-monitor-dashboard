@@ -11,7 +11,7 @@ import timeFormatter from '../../helpers/timeFormatter';
 
 import './styles.css';
 
-const Card = ({ name, sensorId, sensorData, records }) => {
+const Card = ({ name, sensorId, sensorData, records, isDataExpired }) => {
   const [isCardFlipped, setIsCardFlipped] = useState(false);
   const history = useHistory();
 
@@ -28,17 +28,17 @@ const Card = ({ name, sensorId, sensorData, records }) => {
     <div className="card-container-holder">
       <div onClick={handleCardClick} className={isCardFlipped ? 'card-container is-flipped' : 'card-container'}>
         <div className="card-face front-card-container">
-          <div className="alert-bar normal" />
+          <div className={isDataExpired ? 'alert-bar expired' : 'alert-bar normal'} />
           <FrontCard name={name} sensorData={sensorData} />
           <div className="time-ago">
-            <TimeAgoLabel date={sensorData.timestamp} />
+            <TimeAgoLabel date={sensorData.timestamp} expired={isDataExpired} />
           </div>
           <button className="button" onClick={(event) => handleFlipCard(event)} type="button" title="Ver estatísticas">
             <IoIosReturnLeft size={28} />
           </button>
         </div>
         <div className="card-face back-card-container">
-          <div className="alert-bar normal" />
+          <div className={isDataExpired ? 'alert-bar expired' : 'alert-bar normal'} />
           <BackCard name={name} records={records} />
           <div className="time-ago">
             <p>ID do Sensor: {sensorId}</p>
@@ -61,9 +61,9 @@ const Card = ({ name, sensorId, sensorData, records }) => {
 const mapStateToProps = (state, ownProps) => {
   const { sensorId } = ownProps;
   const records = state.sensors[sensorId].data;
-  const expired = state.sensors[sensorId].expired;
-  const sensorData = expired ? { beat: '--', spo2: '--', temp: '--', timestamp: '--' } : records[records.length - 1];
-  return { records, sensorData };
+  const isDataExpired = state.sensors[sensorId].expired;
+  const sensorData = records[records.length - 1];
+  return { records, sensorData, isDataExpired };
 };
 
 export default connect(mapStateToProps)(Card);

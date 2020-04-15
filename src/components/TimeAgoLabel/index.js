@@ -5,7 +5,7 @@ import buildFormatter from 'react-timeago/lib/formatters/buildFormatter';
 
 import timeFormatter from '../../helpers/timeFormatter';
 
-const TimeAgoLabel = ({ date, short = true }) => {
+const TimeAgoLabel = ({ date, short = true, expired = false }) => {
   const timeAgoFormatter = buildFormatter(brazilianStrings);
 
   if (isNaN(date)) {
@@ -13,10 +13,22 @@ const TimeAgoLabel = ({ date, short = true }) => {
   }
 
   const complement = short ? '' : 'Atualizado ';
+
+  const style = {
+    color: expired ? 'red' : 'black',
+    fontWeight: expired ? 'bold' : 'normal',
+  };
+
   return (
     <span>
       {complement}
-      <TimeAgo live={true} date={date} formatter={timeAgoFormatter} title={timeFormatter(date)} />
+      <TimeAgo
+        live={true}
+        date={date}
+        formatter={timeAgoFormatter}
+        title={'Ultima atualização: ' + timeFormatter(date)}
+        style={style}
+      />
     </span>
   );
 };
