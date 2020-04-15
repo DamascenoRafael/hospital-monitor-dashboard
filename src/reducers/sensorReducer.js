@@ -44,11 +44,9 @@ export default (state = {}, action) => {
         const now = Date.now();
         const records = state[sensorId].data;
         const lasTimestamp = records[records.length - 1].timestamp;
-        console.log(`${now - lasTimestamp}`);
         if (now - lasTimestamp >= expireAfterTime) {
           hasExpired = 1;
           state[sensorId].expired = 1;
-          console.log(`${sensorId} has expired`);
         }
       });
 
