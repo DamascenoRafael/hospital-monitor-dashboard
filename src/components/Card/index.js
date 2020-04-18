@@ -7,7 +7,7 @@ import { IoIosReturnLeft } from 'react-icons/io';
 import FrontCard from './FrontCard';
 import BackCard from './BackCard';
 import TimeAgoLabel from '../TimeAgoLabel';
-import timeFormatter from '../../helpers/timeFormatter';
+import TimeIntervalLabel from '../TimeIntervalLabel';
 
 import './styles.css';
 
@@ -30,7 +30,7 @@ const Card = ({ name, sensorId, sensorData, records, isDataExpired }) => {
         <div className="card-face front-card-container">
           <div className={isDataExpired ? 'alert-bar expired' : 'alert-bar normal'} />
           <FrontCard name={name} sensorData={sensorData} />
-          <div className="time-ago">
+          <div className="time-label">
             <TimeAgoLabel date={sensorData.timestamp} expired={isDataExpired} />
           </div>
           <button className="button" onClick={(event) => handleFlipCard(event)} type="button" title="Ver estatísticas">
@@ -40,9 +40,9 @@ const Card = ({ name, sensorId, sensorData, records, isDataExpired }) => {
         <div className="card-face back-card-container">
           <div className={isDataExpired ? 'alert-bar expired' : 'alert-bar normal'} />
           <BackCard name={name} records={records} />
-          <div className="time-ago">
+          <div className="time-label">
             <p>ID do Sensor: {sensorId}</p>
-            Entre {timeFormatter(records[0].timestamp)} - {timeFormatter(sensorData.timestamp)}
+            <TimeIntervalLabel start={records[0].timestamp} end={sensorData.timestamp} />
           </div>
           <button
             className="button"

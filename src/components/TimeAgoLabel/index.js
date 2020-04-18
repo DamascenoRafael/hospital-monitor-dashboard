@@ -9,7 +9,7 @@ const TimeAgoLabel = ({ date, short = true, expired = false }) => {
   const timeAgoFormatter = buildFormatter(brazilianStrings);
 
   if (isNaN(date)) {
-    return 'Nenhum dado recebido';
+    return <span>Nenhum dado recebido</span>;
   }
 
   const complement = short ? '' : 'Atualizado ';

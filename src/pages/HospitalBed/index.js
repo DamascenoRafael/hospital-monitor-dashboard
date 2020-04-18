@@ -18,7 +18,7 @@ const HospitalBed = ({ name, records, sensorData }) => {
     <div>
       <div className="sub-header-container">
         <p>{name}</p>
-        <div className="time-ago">
+        <div className="time-label">
           ID do Sensor: {id} - <TimeAgoLabel date={sensorData.timestamp} short={false} />
         </div>
       </div>

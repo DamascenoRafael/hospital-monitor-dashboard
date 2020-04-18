@@ -16,7 +16,7 @@
   font-size: 20px;
 }
 
-.sub-header-container .time-ago {
+.sub-header-container .time-label {
   position: absolute;
   right: 24px;
   align-self: center;
