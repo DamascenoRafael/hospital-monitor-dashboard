@@ -5,13 +5,15 @@ import { connect } from 'react-redux';
 import { FaHeartbeat } from 'react-icons/fa';
 import { GiLungs } from 'react-icons/gi';
 import { WiThermometer } from 'react-icons/wi';
+import { TiFolderDelete } from 'react-icons/ti';
 
+import { deleteSensorData } from '../../actions';
 import TimeSerieLineChart from '../../components/TimeSerieLineChart';
 import TimeAgoLabel from '../../components/TimeAgoLabel';
 
 import './styles.css';
 
-const HospitalBed = ({ name, records, sensorData }) => {
+const HospitalBed = ({ name, records, sensorData, deleteSensorData }) => {
   let { id } = useParams();
 
   return (
@@ -19,7 +21,12 @@ const HospitalBed = ({ name, records, sensorData }) => {
       <div className="sub-header-container">
         <p>{name}</p>
         <div className="time-label">
-          ID do Sensor: {id} - <TimeAgoLabel date={sensorData.timestamp} short={false} />
+          <span>
+            ID do Sensor: {id} - <TimeAgoLabel date={sensorData.timestamp} short={false} />
+          </span>
+          <button className="button" onClick={() => deleteSensorData(id)} type="button">
+            <TiFolderDelete size={22} color="red" />
+          </button>
         </div>
       </div>
       <div className="hospital-bed-container">
@@ -97,4 +104,4 @@ const mapStateToProps = (state, ownProps) => {
   return { name, records, sensorData };
 };
 
-export default connect(mapStateToProps)(HospitalBed);
+export default connect(mapStateToProps, { deleteSensorData })(HospitalBed);

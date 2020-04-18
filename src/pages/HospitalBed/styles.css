@@ -21,6 +21,16 @@
   right: 24px;
   align-self: center;
   cursor: default;
+  display: flex;
+  align-items: center;
+}
+
+.sub-header-container .time-label .button {
+  width: 32px;
+  height: 32px;
+  display: block;
+  padding: 3px;
+  margin-left: 10px;
 }
 
 .hospital-bed-container {

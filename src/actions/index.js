@@ -12,6 +12,13 @@ export const sensorCheckData = (data) => {
   };
 };
 
+export const deleteSensorData = (data) => {
+  return {
+    type: 'DELETE_SENSOR_DATA',
+    payload: data,
+  };
+};
+
 export const hospitalBedsUpdated = (data) => {
   return {
     type: 'HOSPITAL_BEDS_UPDATED',
