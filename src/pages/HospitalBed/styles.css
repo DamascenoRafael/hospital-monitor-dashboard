@@ -79,7 +79,7 @@
 
 .hospital-bed-container .hb-monitoring-container .info-chart-container .card-container.card-info-container {
   padding: 38px;
-  width: 250px;
+  max-width: 250px;
   height: 250px;
   display: flex;
   flex-direction: column;
@@ -92,6 +92,5 @@
 
 .hospital-bed-container .hb-monitoring-container .info-chart-container .card-container.card-chart-container {
   padding: 5px;
-  width: 70%;
   height: 250px;
 }
