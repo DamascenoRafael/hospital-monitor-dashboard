@@ -9,7 +9,7 @@ import timeFormatter from '../../helpers/timeFormatter';
 
 import './styles.css';
 
-const Table = ({ name, reports }) => {
+const ReportTable = ({ name, reports }) => {
   return (
     <div className="report-container">
       <h1>{name}</h1>
@@ -47,4 +47,4 @@ const Table = ({ name, reports }) => {
   );
 };
 
-export default Table;
+export default ReportTable;

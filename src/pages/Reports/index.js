@@ -1,14 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import Table from '../../components/Table';
+import ReportTable from '../../components/ReportTable';
 
 const Reports = ({ reports, hospitalBeds }) => {
   return (
     <div className="monitor-container">
       <div className="beds-container">
         {hospitalBeds.map((hospitalBed, id) => (
-          <Table key={id} name={hospitalBed.name} reports={reports[hospitalBed.sensorId].data} />
+          <ReportTable key={id} name={hospitalBed.name} reports={reports[hospitalBed.sensorId].data} />
         ))}
       </div>
     </div>
