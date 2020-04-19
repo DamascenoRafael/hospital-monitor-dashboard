@@ -3,15 +3,17 @@ import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { IoIosReturnLeft } from 'react-icons/io';
+import { MdDeleteSweep } from 'react-icons/md';
 
 import FrontCard from './FrontCard';
 import BackCard from './BackCard';
 import TimeAgoLabel from '../TimeAgoLabel';
 import TimeIntervalLabel from '../TimeIntervalLabel';
+import { deleteSensorData } from '../../actions';
 
 import './styles.css';
 
-const Card = ({ name, sensorId, sensorData, records, isDataExpired }) => {
+const Card = ({ name, sensorId, sensorData, records, isDataExpired, deleteSensorData }) => {
   const [isCardFlipped, setIsCardFlipped] = useState(false);
   const history = useHistory();
 
@@ -22,6 +24,12 @@ const Card = ({ name, sensorId, sensorData, records, isDataExpired }) => {
   const handleFlipCard = (event) => {
     event.stopPropagation();
     setIsCardFlipped(!isCardFlipped);
+  };
+
+  const handleDeleteSensorData = (event) => {
+    console.log('Clicou');
+    event.stopPropagation();
+    deleteSensorData(sensorId);
   };
 
   return (
@@ -52,6 +60,14 @@ const Card = ({ name, sensorId, sensorData, records, isDataExpired }) => {
           >
             <IoIosReturnLeft size={28} />
           </button>
+          <button
+            className="button delete"
+            onClick={(event) => handleDeleteSensorData(event)}
+            type="button"
+            title="Deletar registros do sensor"
+          >
+            <MdDeleteSweep size={22} color="red" />
+          </button>
         </div>
       </div>
     </div>
@@ -66,4 +82,4 @@ const mapStateToProps = (state, ownProps) => {
   return { records, sensorData, isDataExpired };
 };
 
-export default connect(mapStateToProps)(Card);
+export default connect(mapStateToProps, { deleteSensorData })(Card);
