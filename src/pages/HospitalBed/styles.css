@@ -36,16 +36,31 @@
 .hospital-bed-container {
   width: 100%;
   padding: 44px 32px;
+  display: flex;
+  justify-content: space-evenly;
 }
 
-.hospital-bed-container .info-chart-container {
+.hospital-bed-container .hb-monitoring-container {
+  width: 80%;
+}
+
+.hospital-bed-container .hb-report-container .report-container {
+  margin-top: 6px;
+  transition: box-shadow 0.3s;
+}
+
+.hospital-bed-container .hb-report-container .report-container:hover {
+  box-shadow: 0 0 20px rgba(30, 30, 30, 0.5);
+}
+
+.hospital-bed-container .hb-monitoring-container .info-chart-container {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
 }
 
-.hospital-bed-container .info-chart-container .card-container {
-  margin: 6px 20px;
+.hospital-bed-container .hb-monitoring-container .info-chart-container .card-container {
+  margin: 6px 10px;
   background: #fff;
   border-radius: 8px;
   overflow: hidden;
@@ -58,11 +73,11 @@
   justify-content: center;
 }
 
-.hospital-bed-container .info-chart-container .card-container:hover {
+.hospital-bed-container .hb-monitoring-container .info-chart-container .card-container:hover {
   box-shadow: 0 0 20px rgba(30, 30, 30, 0.5);
 }
 
-.hospital-bed-container .info-chart-container .card-container.card-info-container {
+.hospital-bed-container .hb-monitoring-container .info-chart-container .card-container.card-info-container {
   padding: 38px;
   width: 250px;
   height: 250px;
@@ -71,11 +86,11 @@
   justify-content: space-between;
 }
 
-.hospital-bed-container .info-chart-container .card-container.card-info-container h2 {
+.hospital-bed-container .hb-monitoring-container .info-chart-container .card-container.card-info-container h2 {
   font-size: 26px;
 }
 
-.hospital-bed-container .info-chart-container .card-container.card-chart-container {
+.hospital-bed-container .hb-monitoring-container .info-chart-container .card-container.card-chart-container {
   padding: 5px;
   width: 70%;
   height: 250px;
