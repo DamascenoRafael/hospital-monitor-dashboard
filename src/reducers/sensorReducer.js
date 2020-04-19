@@ -1,14 +1,8 @@
 import RecordsQueue from '../helpers/RecordsQueue';
+import emptySensorData from '../helpers/emptySensorData';
 import settings from 'settings';
 
 const sensorKeyPrefix = 'sensor-';
-
-const emptySensorData = {
-  beat: '--',
-  spo2: '--',
-  temp: '--',
-  timestamp: '--',
-};
 
 const loadInitialData = (ids) => {
   const state = {};

@@ -1,4 +1,5 @@
 import RecordsQueue from '../helpers/RecordsQueue';
+import emptySensorData from '../helpers/emptySensorData';
 import settings from 'settings';
 
 const reportKeyPrefix = 'report-sensor-';
@@ -9,6 +10,9 @@ const loadInitialData = (ids) => {
   ids.forEach((sensorId) => {
     const reportQueue = new RecordsQueue(reportLength, reportKeyPrefix + sensorId);
     reportQueue.loadLocal();
+    if (reportQueue.isEmpty()) {
+      reportQueue.add(emptySensorData);
+    }
     state[sensorId] = {
       data: reportQueue.queue,
     };
