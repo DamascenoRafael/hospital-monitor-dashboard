@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import { AiOutlineHome, AiOutlineBarChart } from 'react-icons/ai';
+import { AiOutlineHome, AiOutlineBarChart, AiOutlineHistory } from 'react-icons/ai';
 import { sensorCheckData } from '../../actions';
 
 import settings from 'settings';
@@ -33,6 +33,9 @@ const Header = ({ sensorCheckData }) => {
         </Link>
         <Link className="button-link" to="/charts" title="Gráficos Barra">
           <AiOutlineBarChart size={32} />
+        </Link>
+        <Link className="button-link" to="/reports" title="Relatório de Sinais Vitais">
+          <AiOutlineHistory size={32} />
         </Link>
       </div>
       <div className="clock-container">
