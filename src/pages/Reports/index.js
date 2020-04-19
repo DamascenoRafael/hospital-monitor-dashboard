@@ -3,8 +3,6 @@ import { connect } from 'react-redux';
 
 import Table from '../../components/Table';
 
-import './styles.css';
-
 const Reports = ({ reports, hospitalBeds }) => {
   return (
     <div className="monitor-container">

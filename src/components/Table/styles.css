@@ -1,14 +1,14 @@
 .report-container{
-    padding: 15px;
-    margin: 10px;
+    padding: 10px 0;
+    margin: 15px 0px;
     background: #fff;
     border-radius: 8px;
     box-shadow: 0 0 20px rgba(30, 30, 30, 0.3);
     text-align: center;
 }
 .table-container {
-    border-radius: 8px;
-    margin: 20px;
+    border-radius: 8px ;
+    margin: 5px;
     background: #eee;
     cursor: default;
 }
