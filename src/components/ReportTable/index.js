@@ -37,7 +37,7 @@ const ReportTable = ({ name, reports }) => {
                 </td>
                 <td className="sensor-data-col"> {report.beat} bpm</td>
                 <td className="sensor-data-col"> {report.spo2} %</td>
-                <td className="sensor-data-col"> {report.temp} °C</td>
+                <td className="sensor-data-col"> {isNaN(report.temp) ? '--' : report.temp.toFixed(1)} °C</td>
               </tr>
             ))}
           </tbody>
