@@ -1,13 +1,15 @@
 import React from 'react';
 
-import timeFormatter from '../../helpers/timeFormatter';
-import './styles.css';
 import { FaHeartbeat } from 'react-icons/fa';
 import { GiLungs } from 'react-icons/gi';
 import { WiThermometer } from 'react-icons/wi';
 import { FiClock } from 'react-icons/fi';
 
-const Table = ({ name, reports, transpose }) => {
+import timeFormatter from '../../helpers/timeFormatter';
+
+import './styles.css';
+
+const Table = ({ name, reports }) => {
   return (
     <div className="report-container">
       <h1>{name}</h1>
@@ -28,8 +30,8 @@ const Table = ({ name, reports, transpose }) => {
                 <WiThermometer size={20} title="Temperatura" />
               </th>
             </tr>
-            {reports.map((report) => (
-              <tr>
+            {reports.map((report, id) => (
+              <tr key={id}>
                 <td className="sensor-data-col" title={new Date(report.timestamp).toLocaleDateString()}>
                   {timeFormatter(report.timestamp, false)}
                 </td>

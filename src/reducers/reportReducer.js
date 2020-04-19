@@ -37,18 +37,13 @@ export default (state = {}, action) => {
       const reportQueue = new RecordsQueue(reportLength, reportKeyPrefix + sensorId);
       reportQueue.loadLocal();
       const lastReport = reportQueue.getLast();
-
       if (lastReport && isSameInterval(sensorData.timestamp, lastReport.timestamp)) {
         return state;
       }
 
-      console.log('New Report');
-      console.log(JSON.stringify(state));
-      console.log(JSON.stringify(sensorData));
       reportQueue.add(sensorData);
       reportQueue.saveLocal();
       state[sensorId].data = reportQueue.queue;
-
       return { ...state };
     }
     case 'DELETE_SENSOR_DATA': {
