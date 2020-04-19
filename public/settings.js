@@ -15,4 +15,5 @@ const settings = {
     { name: 'Leito 9', sensor_id: 9 },
     { name: 'Leito 10', sensor_id: 10 },
   ],
+  REPORT_INTERVAL_MINUTES: 30,
 };
