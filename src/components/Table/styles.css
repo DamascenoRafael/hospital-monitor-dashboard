@@ -1,23 +1,23 @@
-.report-container{
-    padding: 10px 0;
-    margin: 15px 0px;
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 0 20px rgba(30, 30, 30, 0.3);
-    text-align: center;
+.report-container {
+  padding: 10px;
+  margin: 10px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(30, 30, 30, 0.3);
+  text-align: center;
 }
+
 .table-container {
-    border-radius: 8px ;
-    margin: 5px;
-    background: #eee;
-    cursor: default;
+  border-radius: 8px;
+  margin: 5px;
+  background: #eee;
+  cursor: default;
 }
-  
-.table-container td{
-    width: 70px;
+
+.table-container td {
+  width: 70px;
 }
 
 .sensor-data-col {
-    text-align: center;
+  text-align: center;
 }
-  
