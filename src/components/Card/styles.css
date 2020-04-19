@@ -109,7 +109,7 @@
   position: absolute;
   bottom: 0px;
   left: 0px;
-  border-radius: 0px 8px 0px 8px;
+  border-radius: 0 8px 0 8px;
 }
 
 .card-container .content .sensor-info {

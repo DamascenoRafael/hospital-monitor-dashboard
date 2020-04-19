@@ -27,7 +27,6 @@ const Card = ({ name, sensorId, sensorData, records, isDataExpired, deleteSensor
   };
 
   const handleDeleteSensorData = (event) => {
-    console.log('Clicou');
     event.stopPropagation();
     deleteSensorData(sensorId);
   };
