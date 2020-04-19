@@ -3,12 +3,12 @@ import emptySensorData from '../helpers/emptySensorData';
 import settings from 'settings';
 
 const reportKeyPrefix = 'report-sensor-';
-const reportLength = (24 * 60) / settings.REPORT_INTERVAL_MINUTES;
+const reportsPerDay = (24 * 60) / settings.REPORT_INTERVAL_MINUTES;
 
 const loadInitialData = (ids) => {
   const state = {};
   ids.forEach((sensorId) => {
-    const reportQueue = new RecordsQueue(reportLength, reportKeyPrefix + sensorId);
+    const reportQueue = new RecordsQueue(reportsPerDay, reportKeyPrefix + sensorId);
     reportQueue.loadLocal();
     if (reportQueue.isEmpty()) {
       reportQueue.add(emptySensorData);
@@ -25,9 +25,18 @@ const getInterval = (date) => {
   return Math.floor(dateMinutes / settings.REPORT_INTERVAL_MINUTES);
 };
 
-const isSameInterval = (timestampA, timestampB) => {
-  const dateTimestampA = new Date(timestampA);
-  const dateTimestampB = new Date(timestampB);
+const intervalOffsetPercentage = (sensorData) => {
+  const date = new Date(sensorData.timestamp);
+  const dateMinutes = date.getHours() * 60 + date.getMinutes();
+  return (dateMinutes % settings.REPORT_INTERVAL_MINUTES) / settings.REPORT_INTERVAL_MINUTES;
+};
+
+const hasSameInterval = (sensorDataA, sensorDataB) => {
+  if (!sensorDataA || !sensorDataB) {
+    return false;
+  }
+  const dateTimestampA = new Date(sensorDataA.timestamp);
+  const dateTimestampB = new Date(sensorDataB.timestamp);
   if (dateTimestampA.toDateString() !== dateTimestampB.toDateString()) {
     return false;
   }
@@ -38,13 +47,12 @@ export default (state = {}, action) => {
   switch (action.type) {
     case 'SENSOR_DATA_RECEIVED': {
       const { sensorId, sensorData } = action.payload;
-      const reportQueue = new RecordsQueue(reportLength, reportKeyPrefix + sensorId);
+      const reportQueue = new RecordsQueue(reportsPerDay, reportKeyPrefix + sensorId);
       reportQueue.loadLocal();
       const lastReport = reportQueue.getLast();
-      if (lastReport && isSameInterval(sensorData.timestamp, lastReport.timestamp)) {
+      if (intervalOffsetPercentage(sensorData) >= 0.5 || hasSameInterval(sensorData, lastReport)) {
         return state;
       }
-
       reportQueue.add(sensorData);
       reportQueue.saveLocal();
       state[sensorId].data = reportQueue.queue;
