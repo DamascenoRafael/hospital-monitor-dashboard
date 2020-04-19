@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { FaHeartbeat } from 'react-icons/fa';
 import { GiLungs } from 'react-icons/gi';
 import { WiThermometer } from 'react-icons/wi';
-import { TiFolderDelete } from 'react-icons/ti';
+import { MdDeleteSweep } from 'react-icons/md';
 
 import { deleteSensorData } from '../../actions';
 import TimeSerieLineChart from '../../components/TimeSerieLineChart';
@@ -24,8 +24,13 @@ const HospitalBed = ({ name, records, sensorData, deleteSensorData }) => {
           <span>
             ID do Sensor: {id} - <TimeAgoLabel date={sensorData.timestamp} short={false} />
           </span>
-          <button className="button" onClick={() => deleteSensorData(id)} type="button">
-            <TiFolderDelete size={22} color="red" />
+          <button
+            className="button"
+            onClick={() => deleteSensorData(id)}
+            type="button"
+            title="Deletar registros do sensor"
+          >
+            <MdDeleteSweep size={22} color="red" />
           </button>
         </div>
       </div>
