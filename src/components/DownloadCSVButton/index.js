@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { CSVLink } from 'react-csv';
 
 import { AiOutlineCloudDownload } from 'react-icons/ai';
+
 import './styles.css';
 
 const DownloadCSVButton = ({ reports, filename, title }) => {
@@ -12,10 +13,11 @@ const DownloadCSVButton = ({ reports, filename, title }) => {
     { label: 'Temperatura (°C)', key: 'temp' },
   ];
 
-  const data = reports.map((record) => {
-    let newRecord = { ...record };
-    newRecord.timestamp = new Date(record.timestamp).toLocaleString('pt-BR');
-    return { ...newRecord };
+  const data = reports.map((report) => {
+    let newReport = { ...report };
+    newReport.timestamp = new Date(newReport.timestamp).toLocaleString('pt-BR');
+    newReport.temp = isNaN(newReport.temp) ? newReport.temp : newReport.temp.toFixed(1);
+    return newReport;
   });
 
   return (

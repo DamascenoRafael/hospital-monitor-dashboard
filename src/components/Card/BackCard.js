@@ -8,7 +8,7 @@ import './styles.css';
 
 const BackCard = ({ name, records }) => {
   const calculateStatistics = (data) => {
-    if (data[0] === '--') {
+    if (isNaN(data[0])) {
       return { maxData: '--', avgData: '--', minData: '--' };
     }
     const maxData = Math.max(...data);

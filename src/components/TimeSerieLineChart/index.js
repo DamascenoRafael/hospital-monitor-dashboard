@@ -33,7 +33,7 @@ const TimeSerieLineChart = ({
 
   const timeLabelFormatter = (value) => {
     if (isNaN(value)) {
-      return '--';
+      return value;
     }
     return timeFormatter ? timeFormatter(value) : defaultTimeFormatter(value);
   };

@@ -1,6 +1,6 @@
 const timeFormatter = (timestamp, useSeconds = true) => {
   if (isNaN(timestamp)) {
-    return '--';
+    return timestamp;
   }
 
   const date = new Date(timestamp);
