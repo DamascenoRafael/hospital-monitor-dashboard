@@ -20,7 +20,7 @@ const DownloadCSVButton = ({ reports, filename, title }) => {
 
   return (
     <CSVLink data={data} headers={headers} separator=";" filename={filename} target="_blank">
-      <AiOutlineCloudDownload className="download-button" size={32} title={title} />
+      <AiOutlineCloudDownload className="download-button" size={34} title={title} />
     </CSVLink>
   );
 };

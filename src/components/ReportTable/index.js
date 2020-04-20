@@ -36,18 +36,16 @@ const ReportTable = ({ name, reports }) => {
                 <WiThermometer size={20} title="Temperatura" />
               </th>
             </tr>
-            {reports.map((report, id) => {
-              return (
-                <tr key={id}>
-                  <td className="sensor-data-col" title={new Date(report.timestamp).toLocaleDateString('pt-BR')}>
-                    {timeFormatter(report.timestamp, false)}
-                  </td>
-                  <td className="sensor-data-col"> {report.beat} bpm</td>
-                  <td className="sensor-data-col"> {report.spo2} %</td>
-                  <td className="sensor-data-col"> {isNaN(report.temp) ? '--' : report.temp.toFixed(1)} °C</td>
-                </tr>
-              );
-            })}
+            {reports.map((report, id) => (
+              <tr key={id}>
+                <td className="sensor-data-col" title={new Date(report.timestamp).toLocaleDateString('pt-BR')}>
+                  {timeFormatter(report.timestamp, false)}
+                </td>
+                <td className="sensor-data-col"> {report.beat} bpm</td>
+                <td className="sensor-data-col"> {report.spo2} %</td>
+                <td className="sensor-data-col"> {isNaN(report.temp) ? report.temp : report.temp.toFixed(1)} °C</td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
