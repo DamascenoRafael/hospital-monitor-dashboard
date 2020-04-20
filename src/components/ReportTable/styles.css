@@ -1,4 +1,5 @@
 .report-container {
+  position: relative;
   width: 320px;
   padding: 10px;
   margin: 10px;
