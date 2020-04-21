@@ -10,7 +10,6 @@ import toaster from 'toasted-notes';
 import settings from 'settings';
 
 import './global.css';
-import 'toasted-notes/src/styles.css';
 
 const handleMessage = (topic, message, sensorDataReceived) => {
   const [baseTopic, sensorId] = topic.split('/');

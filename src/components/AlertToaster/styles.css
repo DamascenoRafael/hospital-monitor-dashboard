@@ -6,12 +6,15 @@
     border-radius: 8px;
     padding:10px;
     cursor: pointer;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    transition: box-shadow .5s;
 }
 
 .toaster-left-bar{
     position: absolute;
-    left: 8px;
-    top:8px;
+    left: 0px;
+    top:0px;
     width: 40px;
     height: 100px;
     background: #333;
@@ -34,6 +37,9 @@
     background: #2076e0;
 }
   
+.toaster:hover{
+   box-shadow:  0px 0px 20px rgba(0, 0, 0, 0.65);
+}
 
 .toaster-title,
 .toaster-content{
@@ -46,3 +52,4 @@
     font-size: 18px;
     font-weight: 600;
 }
+
