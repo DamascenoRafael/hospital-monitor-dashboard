@@ -16,8 +16,12 @@ const handleMessage = (topic, message, sensorDataReceived) => {
   switch (baseTopic) {
     case 'alertiot': {
       const { alertType } = JSON.parse(message.toString());
+      const timestamp = Date.now();
+
       toaster.notify(
-        ({ onClose }) => <AlertToaster hospitalBedId={sensorId} alertType={alertType} onClose={onClose} />,
+        ({ onClose }) => (
+          <AlertToaster hospitalBedId={sensorId} alertType={alertType} timestamp={timestamp} onClose={onClose} />
+        ),
         {
           position: 'bottom-right',
           duration: null,

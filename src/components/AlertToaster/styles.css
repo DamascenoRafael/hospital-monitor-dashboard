@@ -25,6 +25,11 @@
     justify-content: center;
 }
 
+.toaster-time{
+    float: right;
+    font-size: 14px;
+    font-weight: 300;
+}
 .toaster-left-bar.danger {
     background: #e02041;
 }

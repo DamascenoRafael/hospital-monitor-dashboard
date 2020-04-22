@@ -3,9 +3,12 @@ import React from 'react';
 import { FiAlertCircle } from 'react-icons/fi';
 import { MdAddAlert } from 'react-icons/md';
 import { AiOutlineWarning } from 'react-icons/ai';
+
+import TimeAgoLabel from '../TimeAgoLabel';
+
 import './styles.css';
 
-const AlertToaster = ({ hospitalBedId, alertType, onClose }) => {
+const AlertToaster = ({ hospitalBedId, alertType, onClose, timestamp }) => {
   const handleAlertType = (alertType) => {
     switch (alertType) {
       case 1: {
@@ -42,7 +45,12 @@ const AlertToaster = ({ hospitalBedId, alertType, onClose }) => {
   return (
     <div className="toaster" onClick={onClose} title="Clique para fechar">
       {handleAlertType(alertType)}
-      <div className="toaster-title">Leito {hospitalBedId}</div>
+      <div className="toaster-title">
+        Leito {hospitalBedId}
+        <div className="toaster-time">
+          <TimeAgoLabel date={timestamp} />
+        </div>
+      </div>
       <div className="toaster-content">Alerta tipo {alertType}</div>
     </div>
   );
