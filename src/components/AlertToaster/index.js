@@ -8,7 +8,7 @@ import TimeAgoLabel from '../TimeAgoLabel';
 
 import './styles.css';
 
-const AlertToaster = ({ hospitalBedId, alertType, onClose, timestamp }) => {
+const AlertToaster = ({ hospitalBed, alertType, onClose, timestamp }) => {
   const handleAlertType = (alertType) => {
     switch (alertType) {
       case 1: {
@@ -46,7 +46,7 @@ const AlertToaster = ({ hospitalBedId, alertType, onClose, timestamp }) => {
     <div className="toaster" onClick={onClose} title="Clique para fechar">
       {handleAlertType(alertType)}
       <div className="toaster-title">
-        Leito {hospitalBedId}
+        {hospitalBed.name}
         <div className="toaster-time">
           <TimeAgoLabel date={timestamp} />
         </div>
