@@ -2,22 +2,21 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { mapKeys, camelCase } from 'lodash';
 import mqtt from 'mqtt';
+import toaster from 'toasted-notes';
 
 import Routes from './routes';
 import AlertToaster from './components/AlertToaster';
 import { hospitalBedsUpdated, sensorDataReceived } from './actions';
-import toaster from 'toasted-notes';
 import settings from 'settings';
 
 import './global.css';
 
 const handleMessage = (topic, message, sensorDataReceived) => {
   const [baseTopic, sensorId] = topic.split('/');
+  const timestamp = Date.now();
   switch (baseTopic) {
     case 'alertiot': {
       const { alertType } = JSON.parse(message.toString());
-      const timestamp = Date.now();
-
       toaster.notify(
         ({ onClose }) => (
           <AlertToaster hospitalBedId={sensorId} alertType={alertType} timestamp={timestamp} onClose={onClose} />
@@ -30,9 +29,7 @@ const handleMessage = (topic, message, sensorDataReceived) => {
       break;
     }
     case 'oximetroiot': {
-      const sensorId = topic.split('/').pop();
       const { beat, spo2, temp } = JSON.parse(message.toString());
-      const timestamp = Date.now();
       const sensorData = { beat, spo2, temp, timestamp };
       sensorDataReceived({ sensorId, sensorData });
       break;
