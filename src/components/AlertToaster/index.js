@@ -40,7 +40,7 @@ const AlertToaster = ({ hospitalBedId, alertType, onClose }) => {
   };
 
   return (
-    <div className="toaster" onClick={onClose} title="Fechar">
+    <div className="toaster" onClick={onClose} title="Clique para fechar">
       {handleAlertType(alertType)}
       <div className="toaster-title">Leito {hospitalBedId}</div>
       <div className="toaster-content">Alerta tipo {alertType}</div>
