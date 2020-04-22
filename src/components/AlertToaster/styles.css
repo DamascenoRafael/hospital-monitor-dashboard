@@ -1,60 +1,59 @@
-.toaster{
-    background: #FFFFFF;
-    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.25);
-    width: 300px;
-    min-height: 100px;
-    border-radius: 8px;
-    padding:10px;
-    cursor: pointer;
-    margin-right: 30px;
-    margin-bottom: 30px;
-    transition: box-shadow .5s;
+.toaster {
+  background: #ffffff;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.25);
+  width: 300px;
+  min-height: 100px;
+  border-radius: 8px;
+  padding: 10px;
+  cursor: pointer;
+  margin-right: 30px;
+  margin-bottom: 30px;
+  transition: box-shadow 0.5s;
 }
 
-.toaster-left-bar{
-    position: absolute;
-    left: 0px;
-    top:0px;
-    width: 40px;
-    height: calc(100% - 30px);
-    background: #333;
-    border-radius: 8px 0px 0px 8px;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.toaster-left-bar {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 40px;
+  height: calc(100% - 30px);
+  background: #333;
+  border-radius: 8px 0px 0px 8px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.toaster-time{
-    float: right;
-    font-size: 14px;
-    font-weight: 300;
+.toaster-time {
+  float: right;
+  font-size: 14px;
+  font-weight: 300;
 }
 .toaster-left-bar.danger {
-    background: #e02041;
+  background: #e02041;
 }
-  
+
 .toaster-left-bar.warning {
-    background: #ffda21;
+  background: #ffda21;
 }
 
 .toaster-left-bar.alert {
-    background: #2076e0;
+  background: #2076e0;
 }
-  
-.toaster:hover{
-   box-shadow:  0px 0px 20px rgba(0, 0, 0, 0.65);
+
+.toaster:hover {
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.65);
 }
 
 .toaster-title,
-.toaster-content{
-    width: 240px;
-    margin-left: 40px;
-    margin-bottom: 10px;
+.toaster-content {
+  width: 240px;
+  margin-left: 40px;
+  margin-bottom: 10px;
 }
 
-.toaster-title{
-    font-size: 18px;
-    font-weight: 600;
+.toaster-title {
+  font-size: 18px;
+  font-weight: 600;
 }
-
