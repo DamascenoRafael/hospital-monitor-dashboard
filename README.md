@@ -44,3 +44,30 @@ serve -s build
 ```
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+
+## Real-time data
+
+Real-time data is obtained with a publish-subscribe pattern through a communication with a broker.
+
+Settings, such as the broker's address, can be changed through the `settings.js` file mentioned in the previous sections.
+
+The data obtained follows the topic names and patterns presented below:
+
+
+- Topic name: **`oximetroiot/:id`**  
+Message pattern:
+
+        {
+            beat: number
+            spo2: number
+            temp: number
+        }
+
+
+- Topic name: **`alertiot/:id`**  
+Message pattern:
+
+        {
+            alertType: number
+        }
+
