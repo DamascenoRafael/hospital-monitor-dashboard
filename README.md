@@ -58,8 +58,8 @@ The data obtained follows the topic names and patterns presented below:
 Message pattern:
 
         {
-            beat: number
-            spo2: number
+            beat: number,
+            spo2: number,
             temp: number
         }
 
@@ -70,4 +70,3 @@ Message pattern:
         {
             alertType: number
         }
-
