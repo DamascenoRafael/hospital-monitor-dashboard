@@ -57,9 +57,9 @@ const BackCard = ({ name, records }) => {
             <td className="sensor-data-col">
               <WiThermometer size={32} />
             </td>
-            <td className="sensor-data-col">{statistics.temp.minData}</td>
+            <td className="sensor-data-col">{statistics.temp.minData.toFixed(1)}</td>
             <td className="sensor-data-col">{statistics.temp.avgData}</td>
-            <td className="sensor-data-col">{statistics.temp.maxData}</td>
+            <td className="sensor-data-col">{statistics.temp.maxData.toFixed(1)}</td>
             <td className="sensor-unit-col">°C</td>
           </tr>
         </tbody>
