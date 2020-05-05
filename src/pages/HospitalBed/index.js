@@ -81,7 +81,7 @@ const HospitalBed = ({ name, records, sensorData, reportsData, deleteSensorData 
             <div className="card-container card-info-container">
               <h2>Temperatura</h2>
               <WiThermometer size={64} />
-              <h2>{sensorData.temp.toFixed(1)} ºC</h2>
+              <h2>{sensorData.temp} ºC</h2>
             </div>
             <div className="card-container card-chart-container">
               <TimeSerieLineChart
@@ -94,7 +94,6 @@ const HospitalBed = ({ name, records, sensorData, reportsData, deleteSensorData 
                 lineName="Temperatura"
                 tickStep={0.5}
                 tickOffset={1}
-                valueFormatter={(value) => value.toFixed(1)}
               />
             </div>
           </div>

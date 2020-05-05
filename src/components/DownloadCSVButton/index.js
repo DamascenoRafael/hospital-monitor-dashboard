@@ -16,7 +16,6 @@ const DownloadCSVButton = ({ reports, filename, title }) => {
   const data = reports.map((report) => {
     let newReport = { ...report };
     newReport.timestamp = new Date(newReport.timestamp).toLocaleString('pt-BR');
-    newReport.temp = isNaN(newReport.temp) ? newReport.temp : newReport.temp.toFixed(1);
     return newReport;
   });
 

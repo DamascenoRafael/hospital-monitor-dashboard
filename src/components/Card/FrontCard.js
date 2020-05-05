@@ -20,7 +20,7 @@ const FrontCard = ({ name, sensorData }) => {
       </div>
       <div className="sensor-info">
         <WiThermometer size={32} />
-        <p>{sensorData.temp.toFixed(1)} ºC</p>
+        <p>{sensorData.temp} ºC</p>
       </div>
     </div>
   );

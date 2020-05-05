@@ -33,6 +33,7 @@ const handleMessage = (topic, message, sensorDataReceived) => {
     case 'oximetroiot': {
       const { beat, spo2, temp } = JSON.parse(message.toString());
       const sensorData = { beat, spo2, temp, timestamp };
+      sensorData.temp = temp.toFixed(1);
       sensorDataReceived({ sensorId, sensorData });
       break;
     }
