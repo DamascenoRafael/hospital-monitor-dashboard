@@ -12,13 +12,22 @@
   z-index: 100;
 }
 
-.header-container .left-button-container {
+.header-container .left-items-container {
   position: absolute;
   left: 24px;
-  align-self: center;
-  width: 150px;
+  width: 300px;
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
+}
+
+.header-container .left-items-container img {
+  height: 45px;
+}
+
+.header-container .left-items-container .left-button-container {
+  width: 150px;
+  display: flex;
   justify-content: space-between;
 }
 
