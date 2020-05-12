@@ -11,11 +11,14 @@ import settings from 'settings';
 
 import './global.css';
 
+const OXIMETERS_TOPIC = 'oximeters';
+const ALERTS_TOPIC = 'alerts';
+
 const handleMessage = (topic, message, sensorDataReceived) => {
   const [baseTopic, sensorId] = topic.split('/');
   const timestamp = Date.now();
   switch (baseTopic) {
-    case 'alertiot': {
+    case ALERTS_TOPIC: {
       const { alertType } = JSON.parse(message.toString());
       const hospitalBed = settings.HOSPITAL_BEDS.find((hospitalBed) => hospitalBed.sensor_id === parseInt(sensorId));
 
@@ -30,7 +33,7 @@ const handleMessage = (topic, message, sensorDataReceived) => {
       );
       break;
     }
-    case 'oximetroiot': {
+    case OXIMETERS_TOPIC: {
       const { beat, spo2, temp } = JSON.parse(message.toString());
       const sensorData = { beat, spo2, temp, timestamp };
       sensorData.temp = temp.toFixed(1);
@@ -55,17 +58,17 @@ const App = ({ hospitalBedsUpdated, sensorDataReceived }) => {
     client.on('connect', function () {
       hospitalBeds.forEach((hospitalBed) => {
         const sensorId = hospitalBed.sensorId;
-        client.subscribe(`oximetroiot/${sensorId}`, function (err) {
-          console.log(`subscribing to oximetroiot/${sensorId}....`);
+        client.subscribe(`${OXIMETERS_TOPIC}/${sensorId}`, function (err) {
+          console.log(`subscribing to ${OXIMETERS_TOPIC}/${sensorId}...`);
           if (err) {
-            console.log(`error subscribing to oximetroiot/${sensorId}....`);
+            console.log(`error subscribing to ${OXIMETERS_TOPIC}/${sensorId}...`);
             console.log(err);
           }
         });
-        client.subscribe(`alertiot/${sensorId}`, function (err) {
-          console.log(`subscribing to alertiot/${sensorId}....`);
+        client.subscribe(`${ALERTS_TOPIC}/${sensorId}`, function (err) {
+          console.log(`subscribing to ${ALERTS_TOPIC}/${sensorId}...`);
           if (err) {
-            console.log(`error subscribing to alertiot/${sensorId}....`);
+            console.log(`error subscribing to ${ALERTS_TOPIC}/${sensorId}...`);
             console.log(err);
           }
         });

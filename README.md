@@ -54,7 +54,7 @@ Settings, such as the broker's address, can be changed through the `settings.js`
 The data obtained follows the topic names and patterns presented below:
 
 
-- Topic name: **`oximetroiot/:id`**  
+- Topic name: **`oximeters/:id`**  
 Message pattern:
 
         {
@@ -64,7 +64,7 @@ Message pattern:
         }
 
 
-- Topic name: **`alertiot/:id`**  
+- Topic name: **`alerts/:id`**  
 Message pattern:
 
         {
