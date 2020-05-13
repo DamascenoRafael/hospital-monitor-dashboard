@@ -52,8 +52,7 @@ const HospitalBed = ({ name, records, sensorData, reportsData, deleteSensorData 
                 fillColor="#2fc432"
                 unit=" bpm"
                 lineName="Freq. Cardíaca"
-                tickStep={2}
-                tickOffset={2}
+                tickStep={5}
               />
             </div>
           </div>
@@ -72,8 +71,9 @@ const HospitalBed = ({ name, records, sensorData, reportsData, deleteSensorData 
                 fillColor="#2076e0"
                 unit=" %"
                 lineName="SpO2"
-                tickStep={1}
-                tickOffset={1}
+                tickStep={5}
+                fixedDomain={[(dataMin) => dataMin, 100]}
+                rangeLimit={[0, 100]}
               />
             </div>
           </div>
@@ -93,7 +93,7 @@ const HospitalBed = ({ name, records, sensorData, reportsData, deleteSensorData 
                 unit=" ºC"
                 lineName="Temperatura"
                 tickStep={0.5}
-                tickOffset={1}
+                valueFormatter={(value) => Number(value).toFixed(1)}
               />
             </div>
           </div>

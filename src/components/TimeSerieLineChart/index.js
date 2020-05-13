@@ -1,4 +1,5 @@
 import React from 'react';
+import { range } from 'lodash';
 import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
 
 import defaultTimeFormatter from '../../helpers/timeFormatter';
@@ -16,19 +17,15 @@ const TimeSerieLineChart = ({
   fixedDomain,
   fixedTicks,
   tickStep,
-  tickOffset,
+  rangeLimit,
 }) => {
-  const calculateTicks = (step = 5, offset = 10) => {
+  const calculateTicks = (step = 5, dataRange = rangeLimit || [0, Number.POSITIVE_INFINITY]) => {
     const allData = data.map((record) => record[dataKeyY]);
     const dataMin = Math.min(...allData);
-    const dataMax = Math.max(...allData);
-    const start = Math.floor(dataMin / step) * step - offset;
-    const end = Math.floor(dataMax / step) * step + offset;
-    let ticks = [];
-    for (let index = start; index <= end; index += step) {
-      ticks.push(index);
-    }
-    return ticks;
+    const dataMax = fixedDomain ? fixedDomain[1] : Math.max(...allData);
+    let start = Math.max(dataRange[0], Math.floor(dataMin / step) * step);
+    let end = Math.min(dataRange[1], Math.ceil(dataMax / step) * step);
+    return range(start, end + 1, step);
   };
 
   const timeLabelFormatter = (value) => {
@@ -44,17 +41,18 @@ const TimeSerieLineChart = ({
 
   return (
     <ResponsiveContainer width="100%" height="80%">
-      <LineChart data={data} syncId={syncId} margin={{ top: 8, right: 25, left: 0, bottom: 8 }}>
+      <LineChart data={data} syncId={syncId} margin={{ top: 8, right: 25, left: 8, bottom: 8 }}>
         <CartesianGrid strokeDasharray="1 1" />
         <XAxis hide dataKey={dataKeyX} interval={0} tickFormatter={(timeStr) => timeLabelFormatter(timeStr)} />
         <YAxis
           type="number"
-          interval={0}
-          domain={fixedDomain || [(dataMin) => dataMin, (dataMax) => dataMax]}
+          interval="preserveStartEnd"
+          domain={fixedDomain || [(dataMin) => dataMin]}
           axisLine={false}
           unit={unit}
-          ticks={fixedTicks || calculateTicks(tickStep, tickOffset)}
+          ticks={fixedTicks || calculateTicks(tickStep)}
           tickFormatter={(value) => valueLabelFormatter(value)}
+          minTickGap={2}
         />
         <Tooltip
           labelFormatter={(timeStr) => timeLabelFormatter(timeStr)}
