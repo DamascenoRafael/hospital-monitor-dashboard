@@ -8,24 +8,24 @@ Dashboard Home Page | Detailed Hospital Bed | Bar Charts Visualization | Reports
 
 ## Dashboard Header
 
-![Dashboard Header](https://drive.google.com/uc?export=view&id=1gntCpE5ze7WuUqRbJ2RYwkNp4KlSKwgm)
+![Dashboard Header](https://www.dropbox.com/s/s412b233fq4gnka/header.gif?raw=1)
 
 ## Dashboard Home Page
 
-![Dashboard Home Page](https://drive.google.com/uc?export=view&id=1hAwqkvGFp-vY1d1CGmsx4c--SELiGkaZ)
+![Dashboard Home Page](https://www.dropbox.com/s/4z1vy4du5vrzmgn/home.gif?raw=1)
 
 Monitoring Card | Outdated Card |
 :---------------|:--------------|
-![Monitoring Card](https://drive.google.com/uc?export=view&id=1hEBJFRchA7tBBovUV2FhGnHrbB-IiXcN)|![Outdated Card](https://drive.google.com/uc?export=view&id=1gij-UJ1s66zcYxXTmOuRrf9Rzwr0RgS0)
+![Monitoring Card](https://www.dropbox.com/s/xywuupzgo4oarna/cardMonitoring.gif?raw=1)|![Outdated Card](https://www.dropbox.com/s/6ivseej7n132n1m/outdatedCard.gif?raw=1)
 
 ## Detailed Hospital Bed
 
-![Detailed Hospital Bed](https://drive.google.com/uc?export=view&id=1hDd3nJwB588OGP4ubv0ZZztSuvB7eN_1)
+![Detailed Hospital Bed](https://www.dropbox.com/s/iwyi5gm9c9wgde9/hospitalBed.gif?raw=1)
 
 ## Bar Charts Visualization
 
-![Bar Charts Visualization](https://drive.google.com/uc?export=view&id=1h-XUfOmDK0GDsKYxzg8B6T43LyoOP2Z7)
+![Bar Charts Visualization](https://www.dropbox.com/s/cm5ksvg9g2i1wrt/barCharts.gif?raw=1)
 
 ## Toast Alerts
 
-![Toast Alerts](https://drive.google.com/uc?export=view&id=1gqlDzmcV3gH7g2-iwceYNcxook1gmJYm)
+![Toast Alerts](https://www.dropbox.com/s/j9kkck0ldnyjttv/alerts.gif?raw=1)
