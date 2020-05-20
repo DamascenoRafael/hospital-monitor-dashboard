@@ -7,21 +7,24 @@ import { WiThermometer } from 'react-icons/wi';
 import './styles.css';
 
 const BackCard = ({ name, records }) => {
-  const calculateStatistics = (data) => {
+  const calculateStatistics = (data, toFixed = false) => {
     if (isNaN(data[0])) {
       return { maxData: '--', avgData: '--', minData: '--' };
     }
-    const maxData = Math.max(...data);
+    const maxData = toFixed ? Math.max(...data).toFixed(1) : Math.max(...data);
     const sumData = data.reduce((accumulator, current) => accumulator + Number(current), 0);
     const avgData = (sumData / data.length).toFixed(1);
-    const minData = Math.min(...data);
+    const minData = toFixed ? Math.min(...data).toFixed(1) : Math.min(...data);
     return { maxData, avgData, minData };
   };
 
   let statistics = {};
   statistics.beat = calculateStatistics(records.map((record) => record.beat));
   statistics.spo2 = calculateStatistics(records.map((record) => record.spo2));
-  statistics.temp = calculateStatistics(records.map((record) => record.temp));
+  statistics.temp = calculateStatistics(
+    records.map((record) => record.temp),
+    true
+  );
 
   return (
     <div className="content">
