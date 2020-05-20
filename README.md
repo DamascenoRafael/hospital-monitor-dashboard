@@ -26,6 +26,8 @@ Dashboard Home Page | Detailed Hospital Bed | Bar Charts Visualization | Reports
 :------------------:|:---------------------:|:------------------------:|:------------:
 ![Dashboard Home Page](images/screens/home.png)|![Detailed Hospital Bed](images/screens/hospitalBed.png)|![Bar Charts Visualization](images/screens/barCharts.png)|![Reports Page](images/screens/reports.png)
 
+For more screenshots and gifs access the [screens.md  file](screens.md).
+
 ## Getting Started
 
 #### Prerequisites
