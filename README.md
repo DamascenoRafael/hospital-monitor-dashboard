@@ -1,23 +1,50 @@
 # Monitoring Dashboard (Covid-19)
 
-Solution developed in [React](https://reactjs.org) aimed at assisting patient monitoring.
+Solution developed in [React](https://reactjs.org) aimed at assisting patient monitoring especially in the context of Covid-19.
 
-**Requirements:**
+[Features](#features) •
+[Screenshots](#screenshots) •
+[Getting Started](#getting-started) •
+[Deployment](#deployment) •
+[Real-Time Data](#real-time-data) •
+[Authors](#authors)
+
+![Monitoring Card](images/gifs/cardMonitoring.gif)
+
+## Features
+
+* Easy-to-view monitoring dashboard for all hospital beds  
+* Monitoring card with real-time information and recent interval statistics  
+* Detailed view of a hospital bed (with line charts)  
+* Visualization of hospital beds through bar charts  
+* Viewing and exporting individual hospital bed reports  
+* Display of toast alerts received through the broker  
+
+## Screenshots
+
+Dashboard Home Page | Detailed Hospital Bed | Bar Charts Visualization | Reports Page
+:------------------:|:---------------------:|:------------------------:|:------------:
+![Dashboard Home Page](images/screens/home.png)|![Detailed Hospital Bed](images/screens/hospitalBed.png)|![Bar Charts Visualization](images/screens/barCharts.png)|![Reports Page](images/screens/reports.png)
+
+## Getting Started
+
+#### Prerequisites
+
 * [Node](https://nodejs.org) (with npm)
 
-## Installing dependencies
+#### Installing Dependencies
 
 To run the app in the development mode or build the app, you need to install the app's dependencies.
 
-```
+```shell
 npm install
 ```
 
-## Running in the development mode
+#### Running in the development mode
 
 The app settings can be changed in the `public/settings.js` file.
 
-```
+```shell
 npm start
 ```
 
@@ -26,7 +53,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 ## Deployment
 
-```
+```shell
 npm run build
 ```
 
@@ -36,16 +63,9 @@ After that the app settings can be changed in the `build/settings.js` file.
 
 Your app is ready to be deployed!
 
-For environments using Node, the easiest way to handle this would be to install [serve](https://github.com/zeit/serve) and let it handle the rest:
+See the react section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-```
-npm install -g serve
-serve -s build
-```
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-## Real-time data
+## Real-Time Data
 
 Real-time data is obtained with a publish-subscribe pattern through a communication with a broker.
 
@@ -53,20 +73,27 @@ Settings, such as the broker's address, can be changed through the `settings.js`
 
 The data obtained follows the topic names and patterns presented below:
 
-
-- Topic name: **`oximeters/:id`**  
+* Topic name: **`oximeters/:id`**  
 Message pattern:
 
+    ```json
         {
-            beat: number,
-            spo2: number,
-            temp: number
+            "beat": number,
+            "spo2": number,
+            "temp": number
         }
+    ```
 
-
-- Topic name: **`alerts/:id`**  
+* Topic name: **`alerts/:id`**  
 Message pattern:
 
+    ```json
         {
-            alertType: number
+            "alertType": number
         }
+    ```
+
+## Authors
+
+[![DamascenoRafael](images/DamascenoRafael.png)](https://github.com/DamascenoRafael)
+ [![Maasouza](images/Maasouza.png)](https://github.com/Maasouza)
