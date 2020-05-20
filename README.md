@@ -7,7 +7,8 @@ Solution developed in [React](https://reactjs.org) aimed at assisting patient mo
 [Getting Started](#getting-started) •
 [Deployment](#deployment) •
 [Real-Time Data](#real-time-data) •
-[Authors](#authors)
+[Authors](#authors) •
+[License](#license)
 
 ![Monitoring Card](images/gifs/cardMonitoring.gif)
 
@@ -99,3 +100,8 @@ Message pattern:
 
 [![DamascenoRafael](images/DamascenoRafael.png)](https://github.com/DamascenoRafael)
  [![Maasouza](images/Maasouza.png)](https://github.com/Maasouza)
+
+## License
+
+Usage is provided under the GNU General Public License v3.0.  
+See [LICENSE](LICENSE) for details.
