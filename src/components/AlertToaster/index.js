@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import { FiAlertCircle } from 'react-icons/fi';
 import { MdAddAlert } from 'react-icons/md';
@@ -8,7 +9,7 @@ import TimeAgoLabel from '../TimeAgoLabel';
 
 import './styles.css';
 
-const AlertToaster = ({ hospitalBed, alertType, onClose, timestamp }) => {
+const AlertToaster = ({ alertType, message, onClose, timestamp, hospitalBed }) => {
   const handleAlertType = (alertType) => {
     switch (alertType) {
       case 1: {
@@ -51,9 +52,15 @@ const AlertToaster = ({ hospitalBed, alertType, onClose, timestamp }) => {
           <TimeAgoLabel date={timestamp} />
         </div>
       </div>
-      <div className="toaster-content">Alerta tipo {alertType}</div>
+      <div className="toaster-content">{message}</div>
     </div>
   );
 };
 
-export default AlertToaster;
+const mapStateToProps = (state, ownProps) => {
+  const { sensorId } = ownProps;
+  const hospitalBed = state.hospitalBeds[sensorId];
+  return { hospitalBed };
+};
+
+export default connect(mapStateToProps)(AlertToaster);
