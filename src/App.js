@@ -2,10 +2,9 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { mapKeys, camelCase } from 'lodash';
 import mqtt from 'mqtt';
-import toaster from 'toasted-notes';
 
 import Routes from './routes';
-import AlertToaster from './components/AlertToaster';
+import displayToaster from './helpers/displayToaster';
 import { hospitalBedsUpdated, sensorDataReceived } from './actions';
 import settings from 'settings';
 
@@ -21,21 +20,7 @@ const handleMessage = (topic, message, sensorDataReceived) => {
     case ALERTS_TOPIC: {
       const { alertType } = JSON.parse(message.toString());
       const alertMessage = `Alerta tipo ${alertType}`;
-      toaster.notify(
-        ({ onClose }) => (
-          <AlertToaster
-            sensorId={sensorId}
-            alertType={alertType}
-            message={alertMessage}
-            timestamp={timestamp}
-            onClose={onClose}
-          />
-        ),
-        {
-          position: 'bottom-right',
-          duration: null,
-        }
-      );
+      displayToaster(sensorId, alertType, alertMessage, timestamp);
       break;
     }
     case OXIMETERS_TOPIC: {
