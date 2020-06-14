@@ -1,6 +1,8 @@
 const settings = {
   DASHBOARD_NAME: 'Dashboard UTI 1',
   BROKER_URL: 'wss://test.mosquitto.org:8081',
+  OXIMETERS_TOPIC: 'oximeters',
+  ALERTS_TOPIC: 'alerts',
   RECORDS_TO_SAVE: 500,
   MINUTES_TO_EXPIRE: 1,
   HOSPITAL_BEDS: [

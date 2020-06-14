@@ -10,20 +10,17 @@ import settings from 'settings';
 
 import './global.css';
 
-const OXIMETERS_TOPIC = 'oximeters';
-const ALERTS_TOPIC = 'alerts';
-
 const handleMessage = (topic, message, sensorDataReceived) => {
   const [baseTopic, sensorId] = topic.split('/');
   const timestamp = Date.now();
   switch (baseTopic) {
-    case ALERTS_TOPIC: {
+    case settings.ALERTS_TOPIC: {
       const { alertType } = JSON.parse(message.toString());
       const alertMessage = `Alerta tipo ${alertType}`;
       displayToaster(sensorId, alertType, alertMessage, timestamp);
       break;
     }
-    case OXIMETERS_TOPIC: {
+    case settings.OXIMETERS_TOPIC: {
       const { beat, spo2, temp } = JSON.parse(message.toString());
       const sensorData = { beat, spo2, temp, timestamp };
       sensorData.temp = temp.toFixed(1);
@@ -48,17 +45,19 @@ const App = ({ hospitalBedsUpdated, sensorDataReceived }) => {
     client.on('connect', function () {
       hospitalBeds.forEach((hospitalBed) => {
         const sensorId = hospitalBed.sensorId;
-        client.subscribe(`${OXIMETERS_TOPIC}/${sensorId}`, function (err) {
-          console.log(`subscribing to ${OXIMETERS_TOPIC}/${sensorId}...`);
+        const oximeterTopic = `${settings.OXIMETERS_TOPIC}/${sensorId}`;
+        const alertTopic = `${settings.ALERTS_TOPIC}/${sensorId}`;
+        client.subscribe(oximeterTopic, function (err) {
+          console.log(`subscribing to ${oximeterTopic}...`);
           if (err) {
-            console.log(`error subscribing to ${OXIMETERS_TOPIC}/${sensorId}...`);
+            console.log(`error subscribing to ${oximeterTopic}...`);
             console.log(err);
           }
         });
-        client.subscribe(`${ALERTS_TOPIC}/${sensorId}`, function (err) {
-          console.log(`subscribing to ${ALERTS_TOPIC}/${sensorId}...`);
+        client.subscribe(alertTopic, function (err) {
+          console.log(`subscribing to ${alertTopic}...`);
           if (err) {
-            console.log(`error subscribing to ${ALERTS_TOPIC}/${sensorId}...`);
+            console.log(`error subscribing to ${alertTopic}...`);
             console.log(err);
           }
         });
