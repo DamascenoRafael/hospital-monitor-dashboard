@@ -1,5 +1,6 @@
 import RecordsQueue from '../helpers/RecordsQueue';
 import emptySensorData from '../helpers/emptySensorData';
+import { SENSOR_DATA_RECEIVED, SENSOR_DATA_CHECK, DELETE_SENSOR_DATA, HOSPITAL_BEDS_UPDATED } from '../actions/types';
 import settings from 'settings';
 
 const sensorKeyPrefix = 'sensor-';
@@ -22,7 +23,7 @@ const loadInitialData = (ids) => {
 
 export default (state = {}, action) => {
   switch (action.type) {
-    case 'SENSOR_DATA_RECEIVED': {
+    case SENSOR_DATA_RECEIVED: {
       const { sensorId, sensorData } = action.payload;
       const recordsQueue = new RecordsQueue(settings.RECORDS_TO_SAVE, sensorKeyPrefix + sensorId);
       recordsQueue.loadLocal();
@@ -32,7 +33,7 @@ export default (state = {}, action) => {
       state[sensorId].expired = 0;
       return { ...state };
     }
-    case 'SENSOR_DATA_CHECK': {
+    case SENSOR_DATA_CHECK: {
       const expireAfterTime = action.payload;
       let hasExpired = 0;
       Object.keys(state).forEach((sensorId) => {
@@ -46,13 +47,13 @@ export default (state = {}, action) => {
       });
       return hasExpired ? { ...state } : state;
     }
-    case 'DELETE_SENSOR_DATA': {
+    case DELETE_SENSOR_DATA: {
       const sensorId = action.payload;
       localStorage.removeItem(sensorKeyPrefix + sensorId);
       const emptyData = loadInitialData([action.payload]);
       return { ...state, ...emptyData };
     }
-    case 'HOSPITAL_BEDS_UPDATED': {
+    case HOSPITAL_BEDS_UPDATED: {
       return loadInitialData(action.payload.map((hospitalBed) => hospitalBed.sensorId));
     }
     default:

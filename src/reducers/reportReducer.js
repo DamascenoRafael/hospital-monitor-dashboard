@@ -1,5 +1,6 @@
 import RecordsQueue from '../helpers/RecordsQueue';
 import emptySensorData from '../helpers/emptySensorData';
+import { SENSOR_DATA_RECEIVED, DELETE_SENSOR_DATA, HOSPITAL_BEDS_UPDATED } from '../actions/types';
 import settings from 'settings';
 
 const reportKeyPrefix = 'report-sensor-';
@@ -45,7 +46,7 @@ const hasSameInterval = (sensorDataA, sensorDataB) => {
 
 export default (state = {}, action) => {
   switch (action.type) {
-    case 'SENSOR_DATA_RECEIVED': {
+    case SENSOR_DATA_RECEIVED: {
       const { sensorId, sensorData } = action.payload;
       const reportQueue = new RecordsQueue(reportsPerDay, reportKeyPrefix + sensorId);
       reportQueue.loadLocal();
@@ -58,13 +59,13 @@ export default (state = {}, action) => {
       state[sensorId].data = reportQueue.queue;
       return { ...state };
     }
-    case 'DELETE_SENSOR_DATA': {
+    case DELETE_SENSOR_DATA: {
       const sensorId = action.payload;
       localStorage.removeItem(reportKeyPrefix + sensorId);
       const emptyData = loadInitialData([action.payload]);
       return { ...state, ...emptyData };
     }
-    case 'HOSPITAL_BEDS_UPDATED': {
+    case HOSPITAL_BEDS_UPDATED: {
       return loadInitialData(action.payload.map((hospitalBed) => hospitalBed.sensorId));
     }
     default: {
