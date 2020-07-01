@@ -23,7 +23,7 @@ const TimeAgoLabel = ({ date, short = true, expired = false }) => {
     <span>
       {complement}
       <TimeAgo
-        live={true}
+        live
         date={date}
         formatter={timeAgoFormatter}
         title={'Última atualização: ' + timeFormatter(date)}
