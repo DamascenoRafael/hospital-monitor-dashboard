@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { AiOutlineHome, AiOutlineBarChart, AiOutlineHistory } from 'react-icons/ai';
 import { sensorCheckData } from '../../actions';
 
-import settings from 'settings';
+import { DASHBOARD_NAME, MINUTES_TO_EXPIRE } from 'settings';
 import coppeImg from '../../assets/coppe.png';
 
 import './styles.css';
@@ -15,7 +15,7 @@ const Header = ({ sensorCheckData }) => {
 
   useEffect(() => {
     const intervalId = setInterval(() => {
-      sensorCheckData(settings.MINUTES_TO_EXPIRE * 60 * 1000);
+      sensorCheckData(MINUTES_TO_EXPIRE * 60 * 1000);
       setClock(new Date().toLocaleTimeString('pt-BR'));
     }, 1000);
     return () => {
@@ -26,7 +26,7 @@ const Header = ({ sensorCheckData }) => {
   return (
     <header className="header-container">
       <div className="content">
-        <h1>{settings.DASHBOARD_NAME}</h1>
+        <h1>{DASHBOARD_NAME}</h1>
       </div>
       <div className="left-items-container">
         <img src={coppeImg} alt="coppe" />

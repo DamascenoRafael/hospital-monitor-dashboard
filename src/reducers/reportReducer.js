@@ -1,10 +1,10 @@
 import RecordsQueue from '../helpers/RecordsQueue';
 import emptySensorData from '../helpers/emptySensorData';
-import { SENSOR_DATA_RECEIVED, DELETE_SENSOR_DATA, HOSPITAL_BEDS_UPDATED } from '../actions/types';
-import settings from 'settings';
+import { SENSOR_DATA_RECEIVED, DELETE_SENSOR_DATA, UPDATE_HOSPITAL_BEDS } from '../actions/types';
+import { REPORT_INTERVAL_MINUTES } from 'settings';
 
 const reportKeyPrefix = 'report-sensor-';
-const reportsPerDay = (24 * 60) / settings.REPORT_INTERVAL_MINUTES;
+const reportsPerDay = (24 * 60) / REPORT_INTERVAL_MINUTES;
 
 const loadInitialData = (ids) => {
   const state = {};
@@ -23,13 +23,13 @@ const loadInitialData = (ids) => {
 
 const getInterval = (date) => {
   const dateMinutes = date.getHours() * 60 + date.getMinutes();
-  return Math.floor(dateMinutes / settings.REPORT_INTERVAL_MINUTES);
+  return Math.floor(dateMinutes / REPORT_INTERVAL_MINUTES);
 };
 
 const intervalOffsetPercentage = (sensorData) => {
   const date = new Date(sensorData.timestamp);
   const dateMinutes = date.getHours() * 60 + date.getMinutes();
-  return (dateMinutes % settings.REPORT_INTERVAL_MINUTES) / settings.REPORT_INTERVAL_MINUTES;
+  return (dateMinutes % REPORT_INTERVAL_MINUTES) / REPORT_INTERVAL_MINUTES;
 };
 
 const hasSameInterval = (sensorDataA, sensorDataB) => {
@@ -65,7 +65,7 @@ export default (state = {}, action) => {
       const emptyData = loadInitialData([action.payload]);
       return { ...state, ...emptyData };
     }
-    case HOSPITAL_BEDS_UPDATED: {
+    case UPDATE_HOSPITAL_BEDS: {
       return loadInitialData(action.payload.map((hospitalBed) => hospitalBed.sensorId));
     }
     default: {

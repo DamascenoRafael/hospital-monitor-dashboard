@@ -1,36 +1,34 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { mapKeys, camelCase } from 'lodash';
 import mqtt from 'mqtt';
 
 import Routes from './routes';
-import { hospitalBedsUpdated, sensorDataReceived } from './actions';
-import settings from 'settings';
+import { updateHospitalBeds } from './actions';
+import { BROKER_URL } from 'settings';
 
 import handleBrokerConnect from './helpers/handleBrokerConnect';
 import handleBrokerMessage from './helpers/handleBrokerMessage';
 
 import './global.css';
 
-const App = ({ hospitalBedsUpdated, sensorDataReceived }) => {
-  const hospitalBeds = settings.HOSPITAL_BEDS.map((hospitalBed) =>
-    mapKeys(hospitalBed, (_value, key) => camelCase(key))
-  );
-  hospitalBedsUpdated(hospitalBeds);
+const App = ({ updateHospitalBeds }) => {
+  useEffect(() => {
+    updateHospitalBeds();
+  });
 
   useEffect(() => {
-    const client = mqtt.connect(settings.BROKER_URL);
+    const client = mqtt.connect(BROKER_URL);
 
     client.on('connect', () => {
-      handleBrokerConnect(client, hospitalBeds);
+      handleBrokerConnect(client);
     });
 
     client.on('message', (topic, message) => {
-      handleBrokerMessage(topic, message, sensorDataReceived);
+      handleBrokerMessage(topic, message);
     });
-  });
+  }, []);
 
   return <Routes />;
 };
 
-export default connect(null, { hospitalBedsUpdated, sensorDataReceived })(App);
+export default connect(null, { updateHospitalBeds })(App);

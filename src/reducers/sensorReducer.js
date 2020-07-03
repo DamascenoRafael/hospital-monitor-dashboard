@@ -1,14 +1,14 @@
 import RecordsQueue from '../helpers/RecordsQueue';
 import emptySensorData from '../helpers/emptySensorData';
-import { SENSOR_DATA_RECEIVED, SENSOR_DATA_CHECK, DELETE_SENSOR_DATA, HOSPITAL_BEDS_UPDATED } from '../actions/types';
-import settings from 'settings';
+import { SENSOR_DATA_RECEIVED, SENSOR_DATA_CHECK, DELETE_SENSOR_DATA, UPDATE_HOSPITAL_BEDS } from '../actions/types';
+import { RECORDS_TO_SAVE } from 'settings';
 
 const sensorKeyPrefix = 'sensor-';
 
 const loadInitialData = (ids) => {
   const state = {};
   ids.forEach((sensorId) => {
-    const recordsQueue = new RecordsQueue(settings.RECORDS_TO_SAVE, sensorKeyPrefix + sensorId);
+    const recordsQueue = new RecordsQueue(RECORDS_TO_SAVE, sensorKeyPrefix + sensorId);
     recordsQueue.loadLocal();
     if (recordsQueue.isEmpty()) {
       recordsQueue.add(emptySensorData);
@@ -25,7 +25,7 @@ export default (state = {}, action) => {
   switch (action.type) {
     case SENSOR_DATA_RECEIVED: {
       const { sensorId, sensorData } = action.payload;
-      const recordsQueue = new RecordsQueue(settings.RECORDS_TO_SAVE, sensorKeyPrefix + sensorId);
+      const recordsQueue = new RecordsQueue(RECORDS_TO_SAVE, sensorKeyPrefix + sensorId);
       recordsQueue.loadLocal();
       recordsQueue.add(sensorData);
       recordsQueue.saveLocal();
@@ -53,7 +53,7 @@ export default (state = {}, action) => {
       const emptyData = loadInitialData([action.payload]);
       return { ...state, ...emptyData };
     }
-    case HOSPITAL_BEDS_UPDATED: {
+    case UPDATE_HOSPITAL_BEDS: {
       return loadInitialData(action.payload.map((hospitalBed) => hospitalBed.sensorId));
     }
     default:

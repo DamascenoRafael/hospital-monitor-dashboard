@@ -1,4 +1,7 @@
-import { SENSOR_DATA_RECEIVED, SENSOR_DATA_CHECK, DELETE_SENSOR_DATA, HOSPITAL_BEDS_UPDATED } from './types';
+import { mapKeys, camelCase } from 'lodash';
+
+import { HOSPITAL_BEDS } from 'settings';
+import { SENSOR_DATA_RECEIVED, SENSOR_DATA_CHECK, DELETE_SENSOR_DATA, UPDATE_HOSPITAL_BEDS } from './types';
 
 export const sensorDataReceived = (data) => {
   return {
@@ -21,9 +24,11 @@ export const deleteSensorData = (data) => {
   };
 };
 
-export const hospitalBedsUpdated = (data) => {
+export const updateHospitalBeds = () => {
+  const hospitalBeds = HOSPITAL_BEDS.map((hospitalBed) => mapKeys(hospitalBed, (_value, key) => camelCase(key)));
+
   return {
-    type: HOSPITAL_BEDS_UPDATED,
-    payload: data,
+    type: UPDATE_HOSPITAL_BEDS,
+    payload: hospitalBeds,
   };
 };

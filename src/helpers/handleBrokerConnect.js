@@ -1,7 +1,10 @@
+import store from '../store';
 import { OXIMETERS_TOPIC, ALERTS_TOPIC } from 'settings';
 
-const handleBrokerConnect = (client, hospitalBeds) => {
-  hospitalBeds.forEach((hospitalBed) => {
+const handleBrokerConnect = (client) => {
+  const state = store.getState();
+
+  state.hospitalBeds.forEach((hospitalBed) => {
     const sensorId = hospitalBed.sensorId;
     const oximeterTopic = `${OXIMETERS_TOPIC}/${sensorId}`;
     const alertTopic = `${ALERTS_TOPIC}/${sensorId}`;
