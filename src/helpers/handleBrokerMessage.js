@@ -14,8 +14,8 @@ const handleBrokerMessage = (topic, message) => {
       break;
     }
     case OXIMETERS_TOPIC: {
-      const { beat, spo2, temp } = JSON.parse(message.toString());
-      const sensorData = { beat, spo2, temp, timestamp };
+      const { beat, sop2, temp } = JSON.parse(message.toString());
+      const sensorData = { beat, spo2: sop2, temp, timestamp };
       sensorData.temp = temp.toFixed(1);
       store.dispatch(sensorDataReceived({ sensorId, sensorData }));
       break;
