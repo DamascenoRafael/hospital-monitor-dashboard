@@ -1,6 +1,6 @@
 const settings = {
   DASHBOARD_NAME: 'Dashboard UTI 1',
-  BROKER_URL: 'wss://test.mosquitto.org:8081',
+  BROKER_URL: 'wss://mqtt.eclipse.org:443/mqtt',
   OXIMETERS_TOPIC: 'oximeters',
   ALERTS_TOPIC: 'alerts',
   RECORDS_TO_SAVE: 500,
